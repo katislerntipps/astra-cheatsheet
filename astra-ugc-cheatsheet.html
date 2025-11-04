@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGC-TikTok Cheat Sheet für Astra AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            background: white;
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            font-size: 2.5em;
+            min-width: 60px;
+        }
+
+        .section-title {
+            flex: 1;
+        }
+
+        .section-title h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .section-title .subtitle {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .content-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .content-box.success {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .content-box.warning {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .content-box.danger {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .tag.green {
+            background: #10b981;
+        }
+
+        .tag.green:hover {
+            background: #059669;
+        }
+
+        .tag.red {
+            background: #ef4444;
+        }
+
+        .tag.red:hover {
+            background: #dc2626;
+        }
+
+        .example-links {
+            margin: 20px 0;
+        }
+
+        .example-link {
+            display: block;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .example-link:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .example-link.good {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .example-link.bad {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        /* Collapsible Examples */
+        .examples-container {
+            margin: 30px 0;
+        }
+
+        .collapsible-example {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .collapsible-example:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .collapsible-header {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .collapsible-header:hover {
+            background: #e9ecef;
+        }
+
+        .collapsible-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+            color: #667eea;
+        }
+
+        .collapsible-example.open .collapsible-icon {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .collapsible-example.open .collapsible-content {
+            max-height: 500px;
+            padding: 15px 20px;
+        }
+
+        .collapsible-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1em;
+        }
+
+        .collapsible-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .checklist {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .checklist h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checklist-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .checklist-item.checked {
+            background: #d1fae5;
+        }
+
+        .checkbox {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #667eea;
+            border-radius: 8px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .checklist-item.checked .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item.checked .checkbox::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checklist-text {
+            flex: 1;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .hook-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .hook-card {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .hook-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .hook-card p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .arrow {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-title h2 {
+                font-size: 1.3em;
+            }
+            
+            .hook-examples {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-button {
+                min-width: 100%;
+            }
+        }
+
+        .reset-button {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+            font-weight: bold;
+        }
+
+        .reset-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 UGC-TikTok Cheat Sheet für Astra AI</h1>
+            <p>Qualitätsstandards für Creator</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-button active" onclick="switchTab(0)">
+                🎬 Setup & Technik
+            </button>
+            <button class="tab-button" onclick="switchTab(1)">
+                📖 Story & Content
+            </button>
+            <button class="tab-button" onclick="switchTab(2)">
+                ✅ Quick-Check
+            </button>
+        </div>
+
+        <!-- TAB 1: Setup & Technik -->
+        <div class="tab-content active" id="tab0">
+            <!-- Section 1: Setting -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎬</div>
+                    <div class="section-title">
+                        <h2>Setting & Umgebung</h2>
+                        <span class="subtitle">90% der Videos in Lernumgebungen</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="content-box success">
+                        <strong>Geeignete Locations:</strong>
+                        <div class="tag-list">
+                            <span class="tag green">Schreibtisch</span>
+                            <span class="tag green">Klassenzimmer</span>
+                            <span class="tag green">Bibliothek</span>
+                            <span class="tag green">Café</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box">
+                        <strong>Must-Have im Frame:</strong>
+                        <p style="margin-top: 10px;">Zeige mindestens eines dieser Study-Elemente sichtbar im Bild:</p>
+                        <div class="tag-list">
+                            <span class="tag">📱 iPad oder Tablet</span>
+                            <span class="tag">📓 Notizbuch</span>
+                            <span class="tag">📚 Lehrbuch/Fachbuch</span>
+                            <span class="tag">🔢 Taschenrechner</span>
+                            <span class="tag">✏️ Stifte oder Marker</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box warning">
+                        <strong>➡️ Warum wichtig?</strong>
+                        <p style="margin-top: 10px;">Die Lernumgebung signalisiert sofort "Bildungscontent" und macht dein Video glaubwürdiger.</p>
+                    </div>
+
+                    <div class="example-links">
+                        <strong>Beispiele:</strong>
+                        <a href="https://vm.tiktok.com/ZNdT4gyHD/" target="_blank" class="example-link good">✅ Gutes Setting & Lighting</a>
+                        <a href="https://vm.tiktok.com/ZNdT4Q3gh/" target="_blank" class="example-link bad">❌ Schlechtes Setting & Lighting</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Beleuchtung -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">💡</div>
+                    <div class="section-title">
+                        <h2>Beleuchtung</h2>
+                        <span class="subtitle">Helle, klare Ausleuchtung</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="content-box success">
+                        <strong>Lichtquellen (nach Priorität):</strong>
+                        <div class="tag-list">
+                            <span class="tag green">1. Natürliches Tageslicht</span>
+                            <span class="tag green">2. Lampe</span>
+                            <span class="tag green">3. Ringlicht</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box danger">
+                        <strong>Vermeide unbedingt:</strong>
+                        <div class="tag-list">
+                            <span class="tag red">❌ Dunkle Videos</span>
+                            <span class="tag red">❌ Körnige/rauschende Aufnahmen</span>
+                            <span class="tag red">❌ Gegenlicht (Silhouetten)</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box warning">
+                        <strong>➡️ Merke:</strong>
+                        <p style="margin-top: 10px;">Gute Beleuchtung kann die Videoqualität sofort um 300% verbessern!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Video-Qualität -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">📹</div>
+                    <div class="section-title">
+                        <h2>Video-Qualität & Setup</h2>
+                        <span class="subtitle">Professionelle Aufnahme-Techniken</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="content-box danger">
+                        <strong>❌ NICHT tun:</strong>
+                        <div class="tag-list">
+                            <span class="tag red">Das Handy in der Hand halten</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box success">
+                        <strong>✅ Aufnahme-Setup:</strong>
+                        <div class="tag-list">
+                            <span class="tag green">Handy aufstellen (Stativ/Halterung)</span>
+                            <span class="tag green">Vertikal filmen (Hochformat)</span>
+                            <span class="tag green">Frontal aufnehmen</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box warning">
+                        <strong>➡️ Effekt:</strong>
+                        <p style="margin-top: 10px;">Stabile Aufnahmen wirken sofort professioneller und lassen sich besser ansehen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Astra im Fokus -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎯</div>
+                    <div class="section-title">
+                        <h2>Astra AI im Fokus</h2>
+                        <span class="subtitle">Astra ist der Star!</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="content-box success">
+                        <strong>Screen-Aufnahmen von Astra:</strong>
+                        <div class="tag-list">
+                            <span class="tag green">✅ Astra NICHT gespiegelt</span>
+                            <span class="tag green">💡 "Invert"-Filter nutzen</span>
+                            <span class="tag green">✅ Klar lesbar & gut sichtbar</span>
+                        </div>
+                    </div>
+
+                    <div class="content-box warning">
+                        <strong>➡️ Remember:</strong>
+                        <p style="margin-top: 10px;">Astra ist der Star deines Videos, nicht nur eine Nebenrolle!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Story & Content -->
+        <div class="tab-content" id="tab1">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">📖</div>
+                    <div class="section-title">
+                        <h2>Story & Content-Struktur</h2>
+                        <span class="subtitle">Astra-zentrierter Content</span>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="content-box warning">
+                        <h3 style="margin-bottom: 15px;">🎣 Hook: Die ersten 3 Sekunden entscheiden</h3>
+                        <p><strong>Der Einstieg muss sofort Aufmerksamkeit erzeugen!</strong></p>
+                    </div>
+
+                    <div class="hook-examples">
+                        <div class="hook-card">
+                            <h4>Beispiel 1 – Problem-Hook</h4>
+                            <p><em>"Ich hab morgen Mathe-Klausur und versteh noch nichts..."</em></p>
+                            <p style="opacity: 0.8;">[Zeigt verzweifelten Blick auf Lehrbuch]</p>
+                            <div class="arrow">↓</div>
+                            <p>Dann zeigen, wie Astra das Problem löst</p>
+                        </div>
+
+                        <div class="hook-card">
+                            <h4>Beispiel 2 – Überraschungs-Hook</h4>
+                            <p><em>"Wie ich von einer 4 auf eine 1 gekommen bin..."</em></p>
+                            <p style="opacity: 0.8;">[Zeigt vorher/nachher Noten]</p>
+                            <div class="arrow">↓</div>
+                            <p>Dann Astra als Game-Changer vorstellen</p>
+                        </div>
+                    </div>
+
+                    <div class="content-box warning">
+                        <strong>➡️ Ziel:</strong>
+                        <p style="margin-top: 10px;">Viewer sollen in den ersten 3 Sekunden wissen, worum es geht und warum sie weiterschauen sollten.</p>
+                    </div>
+
+                    <div class="content-box success">
+                        <h3 style="margin-bottom: 15px;">✅ DO: Astra-zentrierter Content</h3>
+                        <p><strong>Der richtige Ansatz:</strong></p>
+                        <div class="tag-list">
+                            <span class="tag green">1. Wähle zuerst eine Astra-Funktion</span>
+                            <span class="tag green">2. Baue Video um diese Funktion</span>
+                            <span class="tag green">3. Astra als Hauptthema</span>
+                        </div>
+                        <p style="margin-top: 15px;"><strong>Content-Formel:</strong></p>
+                        <p style="margin-top: 10px;">Problem zeigen → Astra als Lösung → Ergebnis/Nutzen demonstrieren</p>
+                    </div>
+
+                    <div class="content-box danger">
+                        <h3 style="margin-bottom: 15px;">❌ DON'T: Astra als Zusatz</h3>
+                        <p><strong>Vermeide:</strong></p>
+                        <div class="tag-list">
+                            <span class="tag red">Astra nur am Ende erwähnen</span>
+                            <span class="tag red">Line: "Egal, Astra wird's richten"</span>
+                            <span class="tag red">Astra nur "reinquetschen"</span>
+                        </div>
+                    </div>
+
+                    <!-- Starke Beispiele -->
+                    <div class="examples-container">
+                        <div class="collapsible-example" onclick="toggleExample(this)">
+                            <div class="collapsible-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; font-size: 1.2em; padding: 20px;">
+                                <span>✅ Starke Beispiele (Astra steht im Mittelpunkt)</span>
+                                <span class="collapsible-icon">▼</span>
+                            </div>
+                            <div class="collapsible-content" style="max-height: 0;">
+                                <div style="padding: 20px 0;">
+                                    <a href="https://vm.tiktok.com/ZNdT4VMoQ/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 1 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdT4v32A/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 2 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdT43bVS/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 3 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVDtR1/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 4 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTV25pb/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 5 ansehen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Schwache Beispiele -->
+                    <div class="examples-container">
+                        <div class="collapsible-example" onclick="toggleExample(this)">
+                            <div class="collapsible-header" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; font-size: 1.2em; padding: 20px;">
+                                <span>❌ Schwache Beispiele (Astra wirkt aufgesetzt)</span>
+                                <span class="collapsible-icon">▼</span>
+                            </div>
+                            <div class="collapsible-content" style="max-height: 0;">
+                                <div style="padding: 20px 0;">
+                                    <a href="https://vm.tiktok.com/ZNdTVSRom/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 1 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVPCFo/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 2 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTV61Ur/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 3 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVSVLU/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 4 ansehen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVDBdh/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">📺 Beispiel 5 ansehen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Quick-Check -->
+        <div class="tab-content" id="tab2">
+            <div class="checklist">
+                <h2>🎯 Quick-Check vor dem Upload</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+                
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Bin ich in einem Lernumgebung?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Sind Study-Materialien sichtbar?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Ist die Beleuchtung hell und klar?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Ist das Video stabil (nicht verwackelt)?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Ist Astra gut sichtbar und nicht gespiegelt?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Habe ich einen starken Hook in den ersten 3 Sekunden?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Steht Astra im Mittelpunkt meines Videos?</div>
+                </div>
+
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">Habe ich das Video um eine Astra-Funktion herum aufgebaut?</div>
+                </div>
+
+                <button class="reset-button" onclick="resetChecklist()">🔄 Checklist zurücksetzen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching
+        function switchTab(tabIndex) {
+            // Hide all tabs
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById('tab' + tabIndex).classList.add('active');
+            tabButtons[tabIndex].classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle collapsible examples
+        function toggleExample(element) {
+            element.classList.toggle('open');
+        }
+
+        // Checklist functions
+        function toggleCheck(item) {
+            item.classList.toggle('checked');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const items = document.querySelectorAll('.checklist-item');
+            const checked = document.querySelectorAll('.checklist-item.checked');
+            const percentage = Math.round((checked.length / items.length) * 100);
+            
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+        }
+
+        function resetChecklist() {
+            const items = document.querySelectorAll('.checklist-item');
+            items.forEach(item => item.classList.remove('checked'));
+            updateProgress();
+        }
+
+        // Initialize progress
+        updateProgress();
+    </script>
+</body>
+</html>
