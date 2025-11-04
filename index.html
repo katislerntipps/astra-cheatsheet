@@ -471,24 +471,79 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
         }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .lang-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+            }
+
+            .lang-btn {
+                font-size: 1.2em;
+                padding: 3px 8px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" onclick="switchLanguage('de')" id="btn-de">🇩🇪</button>
+        <button class="lang-btn" onclick="switchLanguage('en')" id="btn-en">🇬🇧</button>
+    </div>
+
     <div class="container">
         <div class="header">
-            <h1>📱 UGC-TikTok Cheat Sheet für Astra AI</h1>
-            <p>Qualitätsstandards für Creator</p>
+            <h1 data-de="📱 UGC-TikTok Cheat Sheet für Astra AI" data-en="📱 UGC-TikTok Cheat Sheet for Astra AI">📱 UGC-TikTok Cheat Sheet für Astra AI</h1>
+            <p data-de="Qualitätsstandards für Creator" data-en="Quality Standards for Creators">Qualitätsstandards für Creator</p>
         </div>
 
         <!-- Tab Navigation -->
         <div class="tab-navigation">
-            <button class="tab-button active" onclick="switchTab(0)">
+            <button class="tab-button active" onclick="switchTab(0)" data-de="🎬 Setup & Technik" data-en="🎬 Setup & Tech">
                 🎬 Setup & Technik
             </button>
-            <button class="tab-button" onclick="switchTab(1)">
+            <button class="tab-button" onclick="switchTab(1)" data-de="📖 Story & Content" data-en="📖 Story & Content">
                 📖 Story & Content
             </button>
-            <button class="tab-button" onclick="switchTab(2)">
+            <button class="tab-button" onclick="switchTab(2)" data-de="✅ Quick-Check" data-en="✅ Quick-Check">
                 ✅ Quick-Check
             </button>
         </div>
@@ -500,42 +555,42 @@
                 <div class="section-header">
                     <div class="section-icon">🎬</div>
                     <div class="section-title">
-                        <h2>Setting & Umgebung</h2>
-                        <span class="subtitle">90% der Videos in Lernumgebungen</span>
+                        <h2 data-de="Setting & Umgebung" data-en="Setting & Environment">Setting & Umgebung</h2>
+                        <span class="subtitle" data-de="90% der Videos in Lernumgebungen" data-en="90% of videos in learning environments">90% der Videos in Lernumgebungen</span>
                     </div>
                 </div>
                 <div class="section-content">
                     <div class="content-box success">
-                        <strong>Geeignete Locations:</strong>
+                        <strong data-de="Geeignete Locations:" data-en="Suitable Locations:">Geeignete Locations:</strong>
                         <div class="tag-list">
-                            <span class="tag green">Schreibtisch</span>
-                            <span class="tag green">Klassenzimmer</span>
-                            <span class="tag green">Bibliothek</span>
-                            <span class="tag green">Café</span>
+                            <span class="tag green" data-de="Schreibtisch" data-en="Desk">Schreibtisch</span>
+                            <span class="tag green" data-de="Klassenzimmer" data-en="Classroom">Klassenzimmer</span>
+                            <span class="tag green" data-de="Bibliothek" data-en="Library">Bibliothek</span>
+                            <span class="tag green" data-de="Café" data-en="Café">Café</span>
                         </div>
                     </div>
 
                     <div class="content-box">
-                        <strong>Must-Have im Frame:</strong>
-                        <p style="margin-top: 10px;">Zeige mindestens eines dieser Study-Elemente sichtbar im Bild:</p>
+                        <strong data-de="Must-Have im Frame:" data-en="Must-Have in Frame:">Must-Have im Frame:</strong>
+                        <p style="margin-top: 10px;" data-de="Zeige mindestens eines dieser Study-Elemente sichtbar im Bild:" data-en="Show at least one of these study elements visibly in the frame:">Zeige mindestens eines dieser Study-Elemente sichtbar im Bild:</p>
                         <div class="tag-list">
-                            <span class="tag">📱 iPad oder Tablet</span>
-                            <span class="tag">📓 Notizbuch</span>
-                            <span class="tag">📚 Lehrbuch/Fachbuch</span>
-                            <span class="tag">🔢 Taschenrechner</span>
-                            <span class="tag">✏️ Stifte oder Marker</span>
+                            <span class="tag" data-de="📱 iPad oder Tablet" data-en="📱 iPad or Tablet">📱 iPad oder Tablet</span>
+                            <span class="tag" data-de="📓 Notizbuch" data-en="📓 Notebook">📓 Notizbuch</span>
+                            <span class="tag" data-de="📚 Lehrbuch/Fachbuch" data-en="📚 Textbook">📚 Lehrbuch/Fachbuch</span>
+                            <span class="tag" data-de="🔢 Taschenrechner" data-en="🔢 Calculator">🔢 Taschenrechner</span>
+                            <span class="tag" data-de="✏️ Stifte oder Marker" data-en="✏️ Pens or Markers">✏️ Stifte oder Marker</span>
                         </div>
                     </div>
 
                     <div class="content-box warning">
-                        <strong>➡️ Warum wichtig?</strong>
-                        <p style="margin-top: 10px;">Die Lernumgebung signalisiert sofort "Bildungscontent" und macht dein Video glaubwürdiger.</p>
+                        <strong data-de="➡️ Warum wichtig?" data-en="➡️ Why important?">➡️ Warum wichtig?</strong>
+                        <p style="margin-top: 10px;" data-de="Die Lernumgebung signalisiert sofort 'Bildungscontent' und macht dein Video glaubwürdiger." data-en="The learning environment immediately signals 'educational content' and makes your video more credible.">Die Lernumgebung signalisiert sofort "Bildungscontent" und macht dein Video glaubwürdiger.</p>
                     </div>
 
                     <div class="example-links">
-                        <strong>Beispiele:</strong>
-                        <a href="https://vm.tiktok.com/ZNdT4gyHD/" target="_blank" class="example-link good">✅ Gutes Setting & Lighting</a>
-                        <a href="https://vm.tiktok.com/ZNdT4Q3gh/" target="_blank" class="example-link bad">❌ Schlechtes Setting & Lighting</a>
+                        <strong data-de="Beispiele:" data-en="Examples:">Beispiele:</strong>
+                        <a href="https://vm.tiktok.com/ZNdT4gyHD/" target="_blank" class="example-link good" data-de="✅ Gutes Setting & Lighting" data-en="✅ Good Setting & Lighting">✅ Gutes Setting & Lighting</a>
+                        <a href="https://vm.tiktok.com/ZNdT4Q3gh/" target="_blank" class="example-link bad" data-de="❌ Schlechtes Setting & Lighting" data-en="❌ Bad Setting & Lighting">❌ Schlechtes Setting & Lighting</a>
                     </div>
                 </div>
             </div>
@@ -545,32 +600,32 @@
                 <div class="section-header">
                     <div class="section-icon">💡</div>
                     <div class="section-title">
-                        <h2>Beleuchtung</h2>
-                        <span class="subtitle">Helle, klare Ausleuchtung</span>
+                        <h2 data-de="Beleuchtung" data-en="Lighting">Beleuchtung</h2>
+                        <span class="subtitle" data-de="Helle, klare Ausleuchtung" data-en="Bright, clear lighting">Helle, klare Ausleuchtung</span>
                     </div>
                 </div>
                 <div class="section-content">
                     <div class="content-box success">
-                        <strong>Lichtquellen (nach Priorität):</strong>
+                        <strong data-de="Lichtquellen (nach Priorität):" data-en="Light Sources (by priority):">Lichtquellen (nach Priorität):</strong>
                         <div class="tag-list">
-                            <span class="tag green">1. Natürliches Tageslicht</span>
-                            <span class="tag green">2. Lampe</span>
-                            <span class="tag green">3. Ringlicht</span>
+                            <span class="tag green" data-de="1. Natürliches Tageslicht" data-en="1. Natural Daylight">1. Natürliches Tageslicht</span>
+                            <span class="tag green" data-de="2. Lampe" data-en="2. Lamp">2. Lampe</span>
+                            <span class="tag green" data-de="3. Ringlicht" data-en="3. Ring Light">3. Ringlicht</span>
                         </div>
                     </div>
 
                     <div class="content-box danger">
-                        <strong>Vermeide unbedingt:</strong>
+                        <strong data-de="Vermeide unbedingt:" data-en="Avoid at all costs:">Vermeide unbedingt:</strong>
                         <div class="tag-list">
-                            <span class="tag red">❌ Dunkle Videos</span>
-                            <span class="tag red">❌ Körnige/rauschende Aufnahmen</span>
-                            <span class="tag red">❌ Gegenlicht (Silhouetten)</span>
+                            <span class="tag red" data-de="❌ Dunkle Videos" data-en="❌ Dark Videos">❌ Dunkle Videos</span>
+                            <span class="tag red" data-de="❌ Körnige/rauschende Aufnahmen" data-en="❌ Grainy/Noisy Footage">❌ Körnige/rauschende Aufnahmen</span>
+                            <span class="tag red" data-de="❌ Gegenlicht (Silhouetten)" data-en="❌ Backlighting (Silhouettes)">❌ Gegenlicht (Silhouetten)</span>
                         </div>
                     </div>
 
                     <div class="content-box warning">
-                        <strong>➡️ Merke:</strong>
-                        <p style="margin-top: 10px;">Gute Beleuchtung kann die Videoqualität sofort um 300% verbessern!</p>
+                        <strong data-de="➡️ Merke:" data-en="➡️ Remember:">➡️ Merke:</strong>
+                        <p style="margin-top: 10px;" data-de="Gute Beleuchtung kann die Videoqualität sofort um 300% verbessern!" data-en="Good lighting can instantly improve video quality by 300%!">Gute Beleuchtung kann die Videoqualität sofort um 300% verbessern!</p>
                     </div>
                 </div>
             </div>
@@ -580,30 +635,30 @@
                 <div class="section-header">
                     <div class="section-icon">📹</div>
                     <div class="section-title">
-                        <h2>Video-Qualität & Setup</h2>
-                        <span class="subtitle">Professionelle Aufnahme-Techniken</span>
+                        <h2 data-de="Video-Qualität & Setup" data-en="Video Quality & Setup">Video-Qualität & Setup</h2>
+                        <span class="subtitle" data-de="Professionelle Aufnahme-Techniken" data-en="Professional Recording Techniques">Professionelle Aufnahme-Techniken</span>
                     </div>
                 </div>
                 <div class="section-content">
                     <div class="content-box danger">
-                        <strong>❌ NICHT tun:</strong>
+                        <strong data-de="❌ NICHT tun:" data-en="❌ DON'T do:">❌ NICHT tun:</strong>
                         <div class="tag-list">
-                            <span class="tag red">Das Handy in der Hand halten</span>
+                            <span class="tag red" data-de="Das Handy in der Hand halten" data-en="Hold the phone in your hand">Das Handy in der Hand halten</span>
                         </div>
                     </div>
 
                     <div class="content-box success">
-                        <strong>✅ Aufnahme-Setup:</strong>
+                        <strong data-de="✅ Aufnahme-Setup:" data-en="✅ Recording Setup:">✅ Aufnahme-Setup:</strong>
                         <div class="tag-list">
-                            <span class="tag green">Handy aufstellen (Stativ/Halterung)</span>
-                            <span class="tag green">Vertikal filmen (Hochformat)</span>
-                            <span class="tag green">Frontal aufnehmen</span>
+                            <span class="tag green" data-de="Handy aufstellen (Stativ/Halterung)" data-en="Set up phone (Tripod/Mount)">Handy aufstellen (Stativ/Halterung)</span>
+                            <span class="tag green" data-de="Vertikal filmen (Hochformat)" data-en="Film vertically (Portrait)">Vertikal filmen (Hochformat)</span>
+                            <span class="tag green" data-de="Frontal aufnehmen" data-en="Record frontally">Frontal aufnehmen</span>
                         </div>
                     </div>
 
                     <div class="content-box warning">
-                        <strong>➡️ Effekt:</strong>
-                        <p style="margin-top: 10px;">Stabile Aufnahmen wirken sofort professioneller und lassen sich besser ansehen.</p>
+                        <strong data-de="➡️ Effekt:" data-en="➡️ Effect:">➡️ Effekt:</strong>
+                        <p style="margin-top: 10px;" data-de="Stabile Aufnahmen wirken sofort professioneller und lassen sich besser ansehen." data-en="Stable recordings instantly appear more professional and are easier to watch.">Stabile Aufnahmen wirken sofort professioneller und lassen sich besser ansehen.</p>
                     </div>
                 </div>
             </div>
@@ -613,23 +668,23 @@
                 <div class="section-header">
                     <div class="section-icon">🎯</div>
                     <div class="section-title">
-                        <h2>Astra AI im Fokus</h2>
-                        <span class="subtitle">Astra ist der Star!</span>
+                        <h2 data-de="Astra AI im Fokus" data-en="Astra AI in Focus">Astra AI im Fokus</h2>
+                        <span class="subtitle" data-de="Astra ist der Star!" data-en="Astra is the Star!">Astra ist der Star!</span>
                     </div>
                 </div>
                 <div class="section-content">
                     <div class="content-box success">
-                        <strong>Screen-Aufnahmen von Astra:</strong>
+                        <strong data-de="Screen-Aufnahmen von Astra:" data-en="Screen Recordings of Astra:">Screen-Aufnahmen von Astra:</strong>
                         <div class="tag-list">
-                            <span class="tag green">✅ Astra NICHT gespiegelt</span>
-                            <span class="tag green">💡 "Invert"-Filter nutzen</span>
-                            <span class="tag green">✅ Klar lesbar & gut sichtbar</span>
+                            <span class="tag green" data-de="✅ Astra NICHT gespiegelt" data-en="✅ Astra NOT mirrored">✅ Astra NICHT gespiegelt</span>
+                            <span class="tag green" data-de="💡 'Invert'-Filter nutzen" data-en="💡 Use 'Invert' filter">💡 "Invert"-Filter nutzen</span>
+                            <span class="tag green" data-de="✅ Klar lesbar & gut sichtbar" data-en="✅ Clearly readable & visible">✅ Klar lesbar & gut sichtbar</span>
                         </div>
                     </div>
 
                     <div class="content-box warning">
-                        <strong>➡️ Remember:</strong>
-                        <p style="margin-top: 10px;">Astra ist der Star deines Videos, nicht nur eine Nebenrolle!</p>
+                        <strong data-de="➡️ Remember:" data-en="➡️ Remember:">➡️ Remember:</strong>
+                        <p style="margin-top: 10px;" data-de="Astra ist der Star deines Videos, nicht nur eine Nebenrolle!" data-en="Astra is the star of your video, not just a side character!">Astra ist der Star deines Videos, nicht nur eine Nebenrolle!</p>
                     </div>
                 </div>
             </div>
@@ -641,58 +696,58 @@
                 <div class="section-header">
                     <div class="section-icon">📖</div>
                     <div class="section-title">
-                        <h2>Story & Content-Struktur</h2>
-                        <span class="subtitle">Astra-zentrierter Content</span>
+                        <h2 data-de="Story & Content-Struktur" data-en="Story & Content Structure">Story & Content-Struktur</h2>
+                        <span class="subtitle" data-de="Astra-zentrierter Content" data-en="Astra-Centric Content">Astra-zentrierter Content</span>
                     </div>
                 </div>
                 <div class="section-content">
                     <div class="content-box warning">
-                        <h3 style="margin-bottom: 15px;">🎣 Hook: Die ersten 3 Sekunden entscheiden</h3>
-                        <p><strong>Der Einstieg muss sofort Aufmerksamkeit erzeugen!</strong></p>
+                        <h3 style="margin-bottom: 15px;" data-de="🎣 Hook: Die ersten 3 Sekunden entscheiden" data-en="🎣 Hook: The First 3 Seconds Decide">🎣 Hook: Die ersten 3 Sekunden entscheiden</h3>
+                        <p><strong data-de="Der Einstieg muss sofort Aufmerksamkeit erzeugen!" data-en="The opening must immediately grab attention!">Der Einstieg muss sofort Aufmerksamkeit erzeugen!</strong></p>
                     </div>
 
                     <div class="hook-examples">
                         <div class="hook-card">
-                            <h4>Beispiel 1 – Problem-Hook</h4>
-                            <p><em>"Ich hab morgen Mathe-Klausur und versteh noch nichts..."</em></p>
-                            <p style="opacity: 0.8;">[Zeigt verzweifelten Blick auf Lehrbuch]</p>
+                            <h4 data-de="Beispiel 1 – Problem-Hook" data-en="Example 1 – Problem Hook">Beispiel 1 – Problem-Hook</h4>
+                            <p><em data-de='"Ich hab morgen Mathe-Klausur und versteh noch nichts..."' data-en='"I have a math exam tomorrow and I still don't understand anything..."'>"Ich hab morgen Mathe-Klausur und versteh noch nichts..."</em></p>
+                            <p style="opacity: 0.8;" data-de="[Zeigt verzweifelten Blick auf Lehrbuch]" data-en="[Shows desperate look at textbook]">[Zeigt verzweifelten Blick auf Lehrbuch]</p>
                             <div class="arrow">↓</div>
-                            <p>Dann zeigen, wie Astra das Problem löst</p>
+                            <p data-de="Dann zeigen, wie Astra das Problem löst" data-en="Then show how Astra solves the problem">Dann zeigen, wie Astra das Problem löst</p>
                         </div>
 
                         <div class="hook-card">
-                            <h4>Beispiel 2 – Überraschungs-Hook</h4>
-                            <p><em>"Wie ich von einer 4 auf eine 1 gekommen bin..."</em></p>
-                            <p style="opacity: 0.8;">[Zeigt vorher/nachher Noten]</p>
+                            <h4 data-de="Beispiel 2 – Überraschungs-Hook" data-en="Example 2 – Surprise Hook">Beispiel 2 – Überraschungs-Hook</h4>
+                            <p><em data-de='"Wie ich von einer 4 auf eine 1 gekommen bin..."' data-en='"How I went from a D to an A..."'>"Wie ich von einer 4 auf eine 1 gekommen bin..."</em></p>
+                            <p style="opacity: 0.8;" data-de="[Zeigt vorher/nachher Noten]" data-en="[Shows before/after grades]">[Zeigt vorher/nachher Noten]</p>
                             <div class="arrow">↓</div>
-                            <p>Dann Astra als Game-Changer vorstellen</p>
+                            <p data-de="Dann Astra als Game-Changer vorstellen" data-en="Then present Astra as a game-changer">Dann Astra als Game-Changer vorstellen</p>
                         </div>
                     </div>
 
                     <div class="content-box warning">
-                        <strong>➡️ Ziel:</strong>
-                        <p style="margin-top: 10px;">Viewer sollen in den ersten 3 Sekunden wissen, worum es geht und warum sie weiterschauen sollten.</p>
+                        <strong data-de="➡️ Ziel:" data-en="➡️ Goal:">➡️ Ziel:</strong>
+                        <p style="margin-top: 10px;" data-de="Viewer sollen in den ersten 3 Sekunden wissen, worum es geht und warum sie weiterschauen sollten." data-en="Viewers should know within the first 3 seconds what it's about and why they should keep watching.">Viewer sollen in den ersten 3 Sekunden wissen, worum es geht und warum sie weiterschauen sollten.</p>
                     </div>
 
                     <div class="content-box success">
-                        <h3 style="margin-bottom: 15px;">✅ DO: Astra-zentrierter Content</h3>
-                        <p><strong>Der richtige Ansatz:</strong></p>
+                        <h3 style="margin-bottom: 15px;" data-de="✅ DO: Astra-zentrierter Content" data-en="✅ DO: Astra-Centric Content">✅ DO: Astra-zentrierter Content</h3>
+                        <p><strong data-de="Der richtige Ansatz:" data-en="The Right Approach:">Der richtige Ansatz:</strong></p>
                         <div class="tag-list">
-                            <span class="tag green">1. Wähle zuerst eine Astra-Funktion</span>
-                            <span class="tag green">2. Baue Video um diese Funktion</span>
-                            <span class="tag green">3. Astra als Hauptthema</span>
+                            <span class="tag green" data-de="1. Wähle zuerst eine Astra-Funktion" data-en="1. Choose an Astra feature first">1. Wähle zuerst eine Astra-Funktion</span>
+                            <span class="tag green" data-de="2. Baue Video um diese Funktion" data-en="2. Build video around this feature">2. Baue Video um diese Funktion</span>
+                            <span class="tag green" data-de="3. Astra als Hauptthema" data-en="3. Astra as main topic">3. Astra als Hauptthema</span>
                         </div>
-                        <p style="margin-top: 15px;"><strong>Content-Formel:</strong></p>
-                        <p style="margin-top: 10px;">Problem zeigen → Astra als Lösung → Ergebnis/Nutzen demonstrieren</p>
+                        <p style="margin-top: 15px;"><strong data-de="Content-Formel:" data-en="Content Formula:">Content-Formel:</strong></p>
+                        <p style="margin-top: 10px;" data-de="Problem zeigen → Astra als Lösung → Ergebnis/Nutzen demonstrieren" data-en="Show problem → Astra as solution → Demonstrate result/benefit">Problem zeigen → Astra als Lösung → Ergebnis/Nutzen demonstrieren</p>
                     </div>
 
                     <div class="content-box danger">
-                        <h3 style="margin-bottom: 15px;">❌ DON'T: Astra als Zusatz</h3>
-                        <p><strong>Vermeide:</strong></p>
+                        <h3 style="margin-bottom: 15px;" data-de="❌ DON'T: Astra als Zusatz" data-en="❌ DON'T: Astra as Afterthought">❌ DON'T: Astra als Zusatz</h3>
+                        <p><strong data-de="Vermeide:" data-en="Avoid:">Vermeide:</strong></p>
                         <div class="tag-list">
-                            <span class="tag red">Astra nur am Ende erwähnen</span>
-                            <span class="tag red">Line: "Egal, Astra wird's richten"</span>
-                            <span class="tag red">Astra nur "reinquetschen"</span>
+                            <span class="tag red" data-de="Astra nur am Ende erwähnen" data-en="Only mention Astra at the end">Astra nur am Ende erwähnen</span>
+                            <span class="tag red" data-de='Line: "Egal, Astra wird' data-en='Line: "Whatever, Astra will fix it"'>Line: "Egal, Astra wird's richten"</span>
+                            <span class="tag red" data-de='Astra nur "reinquetschen"' data-en='Just "squeeze in" Astra'>Astra nur "reinquetschen"</span>
                         </div>
                     </div>
 
@@ -700,16 +755,16 @@
                     <div class="examples-container">
                         <div class="collapsible-example" onclick="toggleExample(this)">
                             <div class="collapsible-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; font-size: 1.2em; padding: 20px;">
-                                <span>✅ Starke Beispiele (Astra steht im Mittelpunkt)</span>
+                                <span data-de="✅ Starke Beispiele (Astra steht im Mittelpunkt)" data-en="✅ Strong Examples (Astra is the focus)">✅ Starke Beispiele (Astra steht im Mittelpunkt)</span>
                                 <span class="collapsible-icon">▼</span>
                             </div>
                             <div class="collapsible-content">
                                 <div style="padding: 20px 0;">
-                                    <a href="https://vm.tiktok.com/ZNdT4VMoQ/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">1. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdT4v32A/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">2. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdT43bVS/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">3. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdTVDtR1/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">4. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdTV25pb/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">5. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdT4VMoQ/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="1. Beispiel anschauen" data-en="Watch Example 1">1. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdT4v32A/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="2. Beispiel anschauen" data-en="Watch Example 2">2. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdT43bVS/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="3. Beispiel anschauen" data-en="Watch Example 3">3. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVDtR1/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="4. Beispiel anschauen" data-en="Watch Example 4">4. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTV25pb/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="5. Beispiel anschauen" data-en="Watch Example 5">5. Beispiel anschauen</a>
                                 </div>
                             </div>
                         </div>
@@ -719,16 +774,16 @@
                     <div class="examples-container">
                         <div class="collapsible-example" onclick="toggleExample(this)">
                             <div class="collapsible-header" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; font-size: 1.2em; padding: 20px;">
-                                <span>❌ Schwache Beispiele (Astra wirkt aufgesetzt)</span>
+                                <span data-de="❌ Schwache Beispiele (Astra wirkt aufgesetzt)" data-en="❌ Weak Examples (Astra seems forced)">❌ Schwache Beispiele (Astra wirkt aufgesetzt)</span>
                                 <span class="collapsible-icon">▼</span>
                             </div>
                             <div class="collapsible-content">
                                 <div style="padding: 20px 0;">
-                                    <a href="https://vm.tiktok.com/ZNdTVSRom/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">1. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdTVPCFo/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">2. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdTV61Ur/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">3. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdTVSVLU/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">4. Beispiel anschauen</a>
-                                    <a href="https://vm.tiktok.com/ZNdTVDBdh/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;">5. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVSRom/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="1. Beispiel anschauen" data-en="Watch Example 1">1. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVPCFo/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="2. Beispiel anschauen" data-en="Watch Example 2">2. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTV61Ur/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="3. Beispiel anschauen" data-en="Watch Example 3">3. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVSVLU/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="4. Beispiel anschauen" data-en="Watch Example 4">4. Beispiel anschauen</a>
+                                    <a href="https://vm.tiktok.com/ZNdTVDBdh/" target="_blank" class="collapsible-link" style="display: block; margin: 10px 0;" data-de="5. Beispiel anschauen" data-en="Watch Example 5">5. Beispiel anschauen</a>
                                 </div>
                             </div>
                         </div>
@@ -740,57 +795,91 @@
         <!-- TAB 3: Quick-Check -->
         <div class="tab-content" id="tab2">
             <div class="checklist">
-                <h2>🎯 Quick-Check vor dem Upload</h2>
+                <h2 data-de="🎯 Quick-Check vor dem Upload" data-en="🎯 Quick-Check Before Upload">🎯 Quick-Check vor dem Upload</h2>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill">0%</div>
                 </div>
-                
+
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Bin ich in einem Lernumgebung?</div>
+                    <div class="checklist-text" data-de="Bin ich in einem Lernumgebung?" data-en="Am I in a learning environment?">Bin ich in einem Lernumgebung?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Sind Study-Materialien sichtbar?</div>
+                    <div class="checklist-text" data-de="Sind Study-Materialien sichtbar?" data-en="Are study materials visible?">Sind Study-Materialien sichtbar?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Ist die Beleuchtung hell und klar?</div>
+                    <div class="checklist-text" data-de="Ist die Beleuchtung hell und klar?" data-en="Is the lighting bright and clear?">Ist die Beleuchtung hell und klar?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Ist das Video stabil (nicht verwackelt)?</div>
+                    <div class="checklist-text" data-de="Ist das Video stabil (nicht verwackelt)?" data-en="Is the video stable (not shaky)?">Ist das Video stabil (nicht verwackelt)?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Ist Astra gut sichtbar und nicht gespiegelt?</div>
+                    <div class="checklist-text" data-de="Ist Astra gut sichtbar und nicht gespiegelt?" data-en="Is Astra clearly visible and not mirrored?">Ist Astra gut sichtbar und nicht gespiegelt?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Habe ich einen starken Hook in den ersten 3 Sekunden?</div>
+                    <div class="checklist-text" data-de="Habe ich einen starken Hook in den ersten 3 Sekunden?" data-en="Do I have a strong hook in the first 3 seconds?">Habe ich einen starken Hook in den ersten 3 Sekunden?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Steht Astra im Mittelpunkt meines Videos?</div>
+                    <div class="checklist-text" data-de="Steht Astra im Mittelpunkt meines Videos?" data-en="Is Astra the focus of my video?">Steht Astra im Mittelpunkt meines Videos?</div>
                 </div>
 
                 <div class="checklist-item" onclick="toggleCheck(this)">
                     <div class="checkbox"></div>
-                    <div class="checklist-text">Habe ich das Video um eine Astra-Funktion herum aufgebaut?</div>
+                    <div class="checklist-text" data-de="Habe ich das Video um eine Astra-Funktion herum aufgebaut?" data-en="Did I build the video around an Astra feature?">Habe ich das Video um eine Astra-Funktion herum aufgebaut?</div>
                 </div>
 
-                <button class="reset-button" onclick="resetChecklist()">🔄 Checklist zurücksetzen</button>
+                <button class="reset-button" onclick="resetChecklist()" data-de="🔄 Checklist zurücksetzen" data-en="🔄 Reset Checklist">🔄 Checklist zurücksetzen</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Language Management
+        let currentLanguage = 'de';
+
+        // Load saved language preference
+        function loadLanguagePreference() {
+            const saved = localStorage.getItem('astra-language');
+            if (saved) {
+                currentLanguage = saved;
+                switchLanguage(saved, false);
+            }
+        }
+
+        // Switch language
+        function switchLanguage(lang, save = true) {
+            currentLanguage = lang;
+
+            // Update button states
+            document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Update all elements with data-de and data-en attributes
+            document.querySelectorAll('[data-de][data-en]').forEach(element => {
+                element.textContent = element.getAttribute('data-' + lang);
+            });
+
+            // Save preference
+            if (save) {
+                localStorage.setItem('astra-language', lang);
+            }
+        }
+
         // Tab Switching
         function switchTab(tabIndex) {
             // Hide all tabs
@@ -824,7 +913,7 @@
             const items = document.querySelectorAll('.checklist-item');
             const checked = document.querySelectorAll('.checklist-item.checked');
             const percentage = Math.round((checked.length / items.length) * 100);
-            
+
             const progressFill = document.getElementById('progressFill');
             progressFill.style.width = percentage + '%';
             progressFill.textContent = percentage + '%';
@@ -836,8 +925,11 @@
             updateProgress();
         }
 
-        // Initialize progress
-        updateProgress();
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLanguagePreference();
+            updateProgress();
+        });
     </script>
 </body>
 </html>
