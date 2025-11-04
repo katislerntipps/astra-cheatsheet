@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -633,20 +633,20 @@
 <body>
     <!-- Language Toggle -->
     <div class="language-toggle">
-        <button class="lang-btn active" onclick="switchLanguage('de')" id="btn-de">🇩🇪</button>
-        <button class="lang-btn" onclick="switchLanguage('en')" id="btn-en">🇬🇧</button>
+        <button class="lang-btn active" onclick="switchLanguage('en')" id="btn-en">🇺🇸</button>
+        <button class="lang-btn" onclick="switchLanguage('de')" id="btn-de">🇩🇪</button>
     </div>
 
     <div class="container">
         <div class="header">
-            <h1 data-de="📱 UGC-TikTok Cheat Sheet für Astra AI" data-en="📱 UGC-TikTok Cheat Sheet for Astra AI">📱 UGC-TikTok Cheat Sheet für Astra AI</h1>
-            <p data-de="Qualitätsstandards für Creator" data-en="Quality Standards for Creators">Qualitätsstandards für Creator</p>
+            <h1 data-de="📱 UGC-TikTok Cheat Sheet für Astra AI" data-en="📱 UGC-TikTok Cheat Sheet for Astra AI">📱 UGC-TikTok Cheat Sheet for Astra AI</h1>
+            <p data-de="Qualitätsstandards für Creator" data-en="Quality Standards for Creators">Quality Standards for Creators</p>
         </div>
 
         <!-- Tab Navigation -->
         <div class="tab-navigation">
             <button class="tab-button active" onclick="switchTab(0)" data-de="🎬 Setup & Technik" data-en="🎬 Setup & Tech">
-                🎬 Setup & Technik
+                🎬 Setup & Tech
             </button>
             <button class="tab-button" onclick="switchTab(1)" data-de="📖 Story & Content" data-en="📖 Story & Content">
                 📖 Story & Content
@@ -955,7 +955,7 @@
 
     <script>
         // Language Management
-        let currentLanguage = 'de';
+        let currentLanguage = 'en';
 
         // Load saved language preference
         function loadLanguagePreference() {
@@ -963,6 +963,9 @@
             if (saved) {
                 currentLanguage = saved;
                 switchLanguage(saved, false);
+            } else {
+                // Default to English on first visit
+                switchLanguage('en', false);
             }
         }
 
