@@ -265,6 +265,10 @@
             margin: 20px 0;
         }
 
+        .example-links strong {
+            color: #F0F0F0;
+        }
+
         .example-link {
             display: block;
             padding: 15px 20px;
@@ -599,6 +603,8 @@
             transition: all 0.3s ease;
             opacity: 0.5;
             filter: grayscale(50%);
+            color: #F0F0F0;
+            font-weight: 500;
         }
 
         .lang-btn:hover {
@@ -633,8 +639,8 @@
 <body>
     <!-- Language Toggle -->
     <div class="language-toggle">
-        <button class="lang-btn active" onclick="switchLanguage('en')" id="btn-en">🇺🇸</button>
-        <button class="lang-btn" onclick="switchLanguage('de')" id="btn-de">🇩🇪</button>
+        <button class="lang-btn active" onclick="switchLanguage('en')" id="btn-en">EN 🇺🇸</button>
+        <button class="lang-btn" onclick="switchLanguage('de')" id="btn-de">DE 🇩🇪</button>
     </div>
 
     <div class="container">
