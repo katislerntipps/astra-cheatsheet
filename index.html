@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://www.tiktok.com https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.musical.ly data: blob:; connect-src 'self' https://www.tiktok.com; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://*.tiktok.com https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.musical.ly data: blob:; connect-src 'self' https://*.tiktok.com; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
     <title>UGC-TikTok Cheat Sheet für Astra AI</title>
     <style>
         * {
@@ -1388,12 +1388,6 @@
             document.getElementById('tab' + tabIndex).classList.add('active');
             domCache.tabButtons[tabIndex].classList.add('active');
 
-            // Lazy Loading: Videos nur laden wenn Tab 1 (Story & Content) geöffnet wird
-            if (tabIndex === 1 && !videosLoaded) {
-                loadVideoThumbnails();
-                videosLoaded = true;
-            }
-
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1497,13 +1491,15 @@
 
         // Load TikTok video thumbnails (mit allen Verbesserungen)
         async function loadVideoThumbnails() {
+            console.log('🎬 Starte Thumbnail-Loading für', domCache.videoWrappers.length, 'Videos');
+
             // for...of statt forEach um async/await richtig zu nutzen
             for (const wrapper of domCache.videoWrappers) {
                 const videoUrl = wrapper.getAttribute('data-video-url');
 
                 // URL-Validierung
                 if (!isValidTikTokUrl(videoUrl)) {
-                    console.warn('Ungültige TikTok URL:', videoUrl);
+                    console.warn('❌ Ungültige TikTok URL:', videoUrl);
                     hideThumbnailLoader(wrapper);
                     continue;
                 }
@@ -1514,11 +1510,14 @@
                 // Cache prüfen
                 if (thumbnailCache.has(videoUrl)) {
                     const cachedUrl = thumbnailCache.get(videoUrl);
+                    console.log('✅ Thumbnail aus Cache:', videoUrl);
                     applyThumbnail(thumbnail, loader, cachedUrl);
                     continue;
                 }
 
                 try {
+                    console.log('⏳ Lade Thumbnail von API:', videoUrl);
+
                     // API-Call mit Timeout und Retry
                     const response = await fetchWithRetry(
                         `https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`,
@@ -1528,21 +1527,25 @@
                     );
 
                     const data = await response.json();
+                    console.log('📥 API Response für', videoUrl, ':', data);
 
                     // Thumbnail URL Validierung
                     if (data.thumbnail_url && isValidThumbnailUrl(data.thumbnail_url)) {
                         // In Cache speichern
                         thumbnailCache.set(videoUrl, data.thumbnail_url);
                         applyThumbnail(thumbnail, loader, data.thumbnail_url);
+                        console.log('✅ Thumbnail erfolgreich geladen:', data.thumbnail_url);
                     } else {
-                        console.warn('Ungültige Thumbnail URL:', data.thumbnail_url);
+                        console.warn('❌ Ungültige Thumbnail URL:', data.thumbnail_url);
                         hideThumbnailLoader(wrapper);
                     }
                 } catch (error) {
-                    console.error('Fehler beim Laden des Thumbnails für', videoUrl, ':', error.message);
+                    console.error('❌ Fehler beim Laden des Thumbnails für', videoUrl, ':', error);
                     hideThumbnailLoader(wrapper);
                 }
             }
+
+            console.log('🎬 Thumbnail-Loading abgeschlossen');
         }
 
         // Helper: Thumbnail anwenden
@@ -1625,8 +1628,12 @@
             // 4. Progress aktualisieren
             updateProgress();
 
-            // 5. Videos NICHT automatisch laden (Lazy Loading)
-            // Videos werden nur geladen wenn Tab 1 geöffnet wird
+            // 5. Thumbnails laden nach kurzer Verzögerung (für bessere UX)
+            // Kleine Verzögerung damit die Seite zuerst komplett lädt
+            setTimeout(() => {
+                loadVideoThumbnails();
+                videosLoaded = true;
+            }, 500);
         });
 
         // Error Boundary - Globale Fehlerbehandlung
