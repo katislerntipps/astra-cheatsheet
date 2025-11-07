@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://*.tiktok.com https://*.tiktokcdn.com https://*.tiktokcdn-us.com https://*.musical.ly data: blob:; connect-src 'self' https://*.tiktok.com; font-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src * data: blob:; connect-src *; font-src 'self' data:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
     <title>UGC-TikTok Cheat Sheet für Astra AI</title>
     <style>
         * {
@@ -585,11 +585,11 @@
             right: 20px;
             z-index: 1000;
             display: flex;
-            gap: 10px;
+            gap: 6px;
             background: #2C2C2C;
             background: linear-gradient(145deg, #2C2C2C 0%, #212121 100%);
-            padding: 10px 15px;
-            border-radius: 30px;
+            padding: 6px 10px;
+            border-radius: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 5px 20px rgba(0,0,0,0.5), 0 0 30px rgba(66, 133, 244, 0.1);
         }
@@ -597,21 +597,22 @@
         .lang-btn {
             background: transparent;
             border: 1px solid transparent;
-            font-size: 1.5em;
+            font-size: 1.2em;
             cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 20px;
+            padding: 4px 8px;
+            border-radius: 15px;
             transition: all 0.3s ease;
             opacity: 0.5;
             filter: grayscale(50%);
             color: #F0F0F0;
             font-weight: 500;
+            line-height: 1;
         }
 
         .lang-btn:hover {
             opacity: 1;
             filter: grayscale(0%);
-            transform: scale(1.1);
+            transform: scale(1.15);
             border-color: rgba(66, 133, 244, 0.2);
         }
 
@@ -627,12 +628,13 @@
             .language-toggle {
                 top: 10px;
                 right: 10px;
-                padding: 8px 12px;
+                padding: 5px 8px;
+                gap: 4px;
             }
 
             .lang-btn {
-                font-size: 1.2em;
-                padding: 3px 8px;
+                font-size: 1em;
+                padding: 3px 6px;
             }
         }
 
@@ -819,13 +821,13 @@
 <body>
     <!-- Language Toggle -->
     <div class="language-toggle">
-        <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
-        <button class="lang-btn" id="btn-de" data-lang="de">DE</button>
-        <button class="lang-btn" id="btn-fr" data-lang="fr">FR</button>
-        <button class="lang-btn" id="btn-pl" data-lang="pl">PL</button>
-        <button class="lang-btn" id="btn-it" data-lang="it">IT</button>
-        <button class="lang-btn" id="btn-es" data-lang="es">ES</button>
-        <button class="lang-btn" id="btn-sr" data-lang="sr">SR</button>
+        <button class="lang-btn active" id="btn-en" data-lang="en">🇺🇸</button>
+        <button class="lang-btn" id="btn-de" data-lang="de">🇩🇪</button>
+        <button class="lang-btn" id="btn-fr" data-lang="fr">🇫🇷</button>
+        <button class="lang-btn" id="btn-pl" data-lang="pl">🇵🇱</button>
+        <button class="lang-btn" id="btn-it" data-lang="it">🇮🇹</button>
+        <button class="lang-btn" id="btn-es" data-lang="es">🇪🇸</button>
+        <button class="lang-btn" id="btn-sr" data-lang="sr">🇷🇸</button>
     </div>
 
     <div class="container">
@@ -1482,9 +1484,8 @@
             if (!url || typeof url !== 'string') return false;
             try {
                 const urlObj = new URL(url);
-                return urlObj.protocol === 'https:' &&
-                       (urlObj.hostname.includes('tiktok') ||
-                        urlObj.hostname.includes('musical.ly'));
+                // Nur prüfen ob es HTTPS ist - TikTok nutzt viele verschiedene CDN-Domains
+                return urlObj.protocol === 'https:';
             } catch {
                 return false;
             }
