@@ -672,6 +672,11 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            aspect-ratio: 9/16;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
         }
 
         .video-wrapper:hover {
@@ -680,9 +685,50 @@
             border-color: rgba(66, 133, 244, 0.2);
         }
 
-        .video-wrapper blockquote {
-            margin: 0;
-            padding: 0;
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .video-preview-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .video-preview-text {
+            color: #F0F0F0;
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .video-preview-link {
+            color: #4285F4;
+            font-size: 0.9em;
+            text-decoration: none;
+        }
+
+        .video-wrapper:hover .video-preview {
+            background: linear-gradient(135deg, #3A3A3A 0%, #2C2C2C 100%);
+        }
+
+        .video-wrapper:hover .video-preview-icon {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
         @media (max-width: 1400px) {
@@ -955,41 +1001,41 @@
                         <h3 class="video-section-title strong" data-de="✅ Starke Beispiele" data-en="✅ Strong Examples" data-fr="✅ Exemples Forts" data-pl="✅ Mocne Przykłady" data-it="✅ Esempi Forti" data-es="✅ Ejemplos Fuertes">✅ Starke Beispiele</h3>
                         <p style="text-align: center; color: #B0B0B0; margin-bottom: 30px; font-size: 1.1em;" data-de="Astra steht im Mittelpunkt" data-en="Astra is the focus" data-fr="Astra est au centre" data-pl="Astra jest w centrum" data-it="Astra è al centro" data-es="Astra está en el centro">Astra steht im Mittelpunkt</p>
                         <div class="video-grid">
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdT4VMoQ/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdT4VMoQ/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdT4v32A/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdT4v32A/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdT43bVS/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdT43bVS/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTVDtR1/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTVDtR1/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTV25pb/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTV25pb/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
+                            <a href="https://vm.tiktok.com/ZNdT4VMoQ/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 1" data-en="Example 1" data-fr="Exemple 1" data-pl="Przykład 1" data-it="Esempio 1" data-es="Ejemplo 1">Beispiel 1</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdT4v32A/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 2" data-en="Example 2" data-fr="Exemple 2" data-pl="Przykład 2" data-it="Esempio 2" data-es="Ejemplo 2">Beispiel 2</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdT43bVS/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 3" data-en="Example 3" data-fr="Exemple 3" data-pl="Przykład 3" data-it="Esempio 3" data-es="Ejemplo 3">Beispiel 3</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdTVDtR1/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 4" data-en="Example 4" data-fr="Exemple 4" data-pl="Przykład 4" data-it="Esempio 4" data-es="Ejemplo 4">Beispiel 4</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdTV25pb/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 5" data-en="Example 5" data-fr="Exemple 5" data-pl="Przykład 5" data-it="Esempio 5" data-es="Ejemplo 5">Beispiel 5</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -998,41 +1044,41 @@
                         <h3 class="video-section-title weak" data-de="❌ Schwache Beispiele" data-en="❌ Weak Examples" data-fr="❌ Exemples Faibles" data-pl="❌ Słabe Przykłady" data-it="❌ Esempi Deboli" data-es="❌ Ejemplos Débiles">❌ Schwache Beispiele</h3>
                         <p style="text-align: center; color: #B0B0B0; margin-bottom: 30px; font-size: 1.1em;" data-de="Astra wirkt aufgesetzt" data-en="Astra seems forced" data-fr="Astra semble forcé" data-pl="Astra wydaje się wymuszona" data-it="Astra sembra forzata" data-es="Astra parece forzado">Astra wirkt aufgesetzt</p>
                         <div class="video-grid">
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTVSRom/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTVSRom/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTVPCFo/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTVPCFo/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTV61Ur/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTV61Ur/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTVSVLU/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTVSVLU/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
-                            <div class="video-wrapper">
-                                <blockquote class="tiktok-embed" cite="https://vm.tiktok.com/ZNdTVDBdh/" data-video-id="" style="max-width: 325px; min-width: 200px;">
-                                    <section>
-                                        <a target="_blank" href="https://vm.tiktok.com/ZNdTVDBdh/"></a>
-                                    </section>
-                                </blockquote>
-                            </div>
+                            <a href="https://vm.tiktok.com/ZNdTVSRom/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 1" data-en="Example 1" data-fr="Exemple 1" data-pl="Przykład 1" data-it="Esempio 1" data-es="Ejemplo 1">Beispiel 1</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdTVPCFo/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 2" data-en="Example 2" data-fr="Exemple 2" data-pl="Przykład 2" data-it="Esempio 2" data-es="Ejemplo 2">Beispiel 2</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdTV61Ur/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 3" data-en="Example 3" data-fr="Exemple 3" data-pl="Przykład 3" data-it="Esempio 3" data-es="Ejemplo 3">Beispiel 3</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdTVSVLU/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 4" data-en="Example 4" data-fr="Exemple 4" data-pl="Przykład 4" data-it="Esempio 4" data-es="Ejemplo 4">Beispiel 4</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZNdTVDBdh/" target="_blank" class="video-wrapper">
+                                <div class="video-preview">
+                                    <div class="video-preview-icon">▶️</div>
+                                    <div class="video-preview-text" data-de="Beispiel 5" data-en="Example 5" data-fr="Exemple 5" data-pl="Przykład 5" data-it="Esempio 5" data-es="Ejemplo 5">Beispiel 5</div>
+                                    <div class="video-preview-link" data-de="Video auf TikTok ansehen" data-en="Watch on TikTok" data-fr="Voir sur TikTok" data-pl="Obejrzyj na TikTok" data-it="Guarda su TikTok" data-es="Ver en TikTok">Video auf TikTok ansehen</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1194,8 +1240,5 @@
             updateProgress();
         });
     </script>
-
-    <!-- TikTok Embed Script -->
-    <script async src="https://www.tiktok.com/embed.js"></script>
 </body>
 </html>
