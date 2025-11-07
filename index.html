@@ -1287,6 +1287,89 @@
         const thumbnailCache = new Map();
         const VALID_LANGUAGES = ['en', 'de', 'fr', 'pl', 'it', 'es', 'sr'];
         const API_TIMEOUT = 5000;
+
+        // Language-specific videos
+        const videosByLanguage = {
+            de: {
+                // Deutsche Videos bleiben unverändert (aktuelle Videos)
+                strong: [
+                    'https://vm.tiktok.com/ZNdT4VMoQ/',
+                    'https://vm.tiktok.com/ZNdT4v32A/',
+                    'https://vm.tiktok.com/ZNdT43bVS/',
+                    'https://vm.tiktok.com/ZNdTVDtR1/',
+                    'https://vm.tiktok.com/ZNdTV25pb/'
+                ],
+                weak: [
+                    'https://vm.tiktok.com/ZNdTVSRom/',
+                    'https://vm.tiktok.com/ZNdTVPCFo/',
+                    'https://vm.tiktok.com/ZNdTV61Ur/',
+                    'https://vm.tiktok.com/ZNdTVSVLU/',
+                    'https://vm.tiktok.com/ZNdTVDBdh/'
+                ]
+            },
+            en: {
+                // US (Englisch)
+                strong: [], // Platzhalter
+                weak: [
+                    'https://www.tiktok.com/@revisewithmatilda/video/7568270734976421142',
+                    'https://www.tiktok.com/@study.with.mia98/video/7568508015599488278',
+                    'https://www.tiktok.com/@studywithellaluz/video/7569657564460322070'
+                ]
+            },
+            it: {
+                // IT (Italienisch)
+                strong: [], // Platzhalter
+                weak: [
+                    'https://www.tiktok.com/@studywithfef/video/7562638219607575830',
+                    'https://www.tiktok.com/@studywithfzagrg/video/7560593901065620758',
+                    'https://www.tiktok.com/@studywithalessandra/video/7567420381821242646',
+                    'https://www.tiktok.com/@studywith_viv/video/7560362955372530966',
+                    'https://www.tiktok.com/@studywith_viv/video/7561141485106629910'
+                ]
+            },
+            pl: {
+                // PL (Polnisch)
+                strong: [], // Platzhalter
+                weak: [
+                    'https://www.tiktok.com/@studywithkuma2/video/7567017049105435926',
+                    'https://www.tiktok.com/@learnwith_diana/video/7568475903588601110',
+                    'https://www.tiktok.com/@astraa_ai/video/7564031833713773846',
+                    'https://www.tiktok.com/@learnwithola8/video/7566344976079031574',
+                    'https://www.tiktok.com/@learnwithola8/video/7561115604997016834'
+                ]
+            },
+            fr: {
+                // FR (Französisch)
+                strong: [], // Platzhalter
+                weak: [
+                    'https://www.tiktok.com/@vanlearns/video/7567685786464750870',
+                    'https://www.tiktok.com/@learnwithsarah0/video/7562944279228845345',
+                    'https://www.tiktok.com/@study_with_chlo/video/7564451338545794326',
+                    'https://www.tiktok.com/@saki_study04/video/7565182591280729347',
+                    'https://www.tiktok.com/@saki_study04/video/7565974791572704534'
+                ]
+            },
+            es: {
+                // ES (Spanisch)
+                strong: [], // Platzhalter
+                weak: [
+                    'https://www.tiktok.com/@estudiaconmigo30/video/7552527258305531158',
+                    'https://www.tiktok.com/@estudiaconmigo30/video/7552965851079560470',
+                    'https://www.tiktok.com/@learnwithmeryy/video/7553604256926813462',
+                    'https://www.tiktok.com/@studywithagu/video/7564021956538895636',
+                    'https://www.tiktok.com/@uniwithlilia/video/7568947289725701398'
+                ]
+            },
+            sr: {
+                // SR (Serbisch/Kroatisch)
+                strong: [], // Platzhalter
+                weak: [
+                    'https://www.tiktok.com/@nauci.sa.deom/video/7569613025615957304',
+                    'https://www.tiktok.com/@uciuzsandija/video/7569631472538160440',
+                    'https://www.tiktok.com/@learnwithvalentina/video/7569426229716094219'
+                ]
+            }
+        };
         const MAX_RETRIES = 2;
 
         // DOM Cache - Elemente nur einmal suchen, dann speichern
@@ -1368,6 +1451,165 @@
                     console.warn('Konnte Sprache nicht speichern:', error);
                 }
             }
+
+            // Update videos based on language
+            updateVideosForLanguage(lang);
+        }
+
+        // ==============================
+        // VIDEO LANGUAGE SWITCHING
+        // ==============================
+
+        function updateVideosForLanguage(lang) {
+            if (!videosByLanguage[lang]) {
+                console.warn('Keine Videos für Sprache verfügbar:', lang);
+                return;
+            }
+
+            const videos = videosByLanguage[lang];
+
+            // Get all video sections using a more compatible approach
+            const videoSections = document.querySelectorAll('.video-section');
+            let strongSection = null;
+            let weakSection = null;
+
+            videoSections.forEach(section => {
+                const title = section.querySelector('.video-section-title');
+                if (title) {
+                    if (title.classList.contains('strong')) {
+                        strongSection = section;
+                    } else if (title.classList.contains('weak')) {
+                        weakSection = section;
+                    }
+                }
+            });
+
+            if (strongSection) {
+                updateVideoSection(strongSection, videos.strong, 'strong');
+            }
+
+            if (weakSection) {
+                updateVideoSection(weakSection, videos.weak, 'weak');
+            }
+
+            // Clear thumbnail cache when switching languages
+            thumbnailCache.clear();
+
+            // Reload thumbnails for new videos
+            if (videosLoaded) {
+                loadVideoThumbnails();
+            }
+        }
+
+        function updateVideoSection(section, videoUrls, type) {
+            const videoGrid = section.querySelector('.video-grid');
+            if (!videoGrid) return;
+
+            // Clear existing videos
+            videoGrid.innerHTML = '';
+
+            // If no videos (placeholder), show message
+            if (videoUrls.length === 0) {
+                const placeholderMessage = document.createElement('div');
+                placeholderMessage.className = 'placeholder-message';
+                placeholderMessage.style.cssText = 'text-align: center; color: #888; padding: 40px 20px; grid-column: 1 / -1; font-size: 1.1em;';
+
+                const messages = {
+                    de: 'Noch keine Beispiele verfügbar',
+                    en: 'No examples available yet',
+                    fr: 'Aucun exemple disponible pour le moment',
+                    pl: 'Brak dostępnych przykładów',
+                    it: 'Nessun esempio disponibile al momento',
+                    es: 'Aún no hay ejemplos disponibles',
+                    sr: 'Još nema dostupnih primera'
+                };
+
+                placeholderMessage.setAttribute('data-de', messages.de);
+                placeholderMessage.setAttribute('data-en', messages.en);
+                placeholderMessage.setAttribute('data-fr', messages.fr);
+                placeholderMessage.setAttribute('data-pl', messages.pl);
+                placeholderMessage.setAttribute('data-it', messages.it);
+                placeholderMessage.setAttribute('data-es', messages.es);
+                placeholderMessage.setAttribute('data-sr', messages.sr);
+                placeholderMessage.textContent = messages[currentLanguage] || messages.en;
+
+                videoGrid.appendChild(placeholderMessage);
+
+                // Update DOM cache to include new placeholder in language elements
+                if (domCache.languageElements) {
+                    domCache.languageElements = document.querySelectorAll('[data-en]');
+                }
+
+                return;
+            }
+
+            // Add videos
+            videoUrls.forEach((url, index) => {
+                const videoWrapper = createVideoElement(url, index + 1);
+                videoGrid.appendChild(videoWrapper);
+            });
+
+            // Update DOM cache for video wrappers
+            domCache.videoWrappers = document.querySelectorAll('.video-wrapper');
+        }
+
+        function createVideoElement(videoUrl, index) {
+            const wrapper = document.createElement('a');
+            wrapper.href = videoUrl;
+            wrapper.target = '_blank';
+            wrapper.className = 'video-wrapper';
+            wrapper.setAttribute('data-video-url', videoUrl);
+
+            const exampleTexts = {
+                de: `Beispiel ${index}`,
+                en: `Example ${index}`,
+                fr: `Exemple ${index}`,
+                pl: `Przykład ${index}`,
+                it: `Esempio ${index}`,
+                es: `Ejemplo ${index}`,
+                sr: `Primer ${index}`
+            };
+
+            const watchTexts = {
+                de: 'Auf TikTok ansehen',
+                en: 'Watch on TikTok',
+                fr: 'Voir sur TikTok',
+                pl: 'Zobacz na TikTok',
+                it: 'Guarda su TikTok',
+                es: 'Ver en TikTok',
+                sr: 'Pogledajte na TikTok-u'
+            };
+
+            wrapper.innerHTML = `
+                <div class="video-thumbnail loading">
+                    <div class="thumbnail-loader"></div>
+                    <div class="video-play-overlay">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-info-text"
+                             data-de="${exampleTexts.de}"
+                             data-en="${exampleTexts.en}"
+                             data-fr="${exampleTexts.fr}"
+                             data-pl="${exampleTexts.pl}"
+                             data-it="${exampleTexts.it}"
+                             data-es="${exampleTexts.es}"
+                             data-sr="${exampleTexts.sr}">${exampleTexts[currentLanguage] || exampleTexts.en}</div>
+                        <div class="video-info-link"
+                             data-de="${watchTexts.de}"
+                             data-en="${watchTexts.en}"
+                             data-fr="${watchTexts.fr}"
+                             data-pl="${watchTexts.pl}"
+                             data-it="${watchTexts.it}"
+                             data-es="${watchTexts.es}"
+                             data-sr="${watchTexts.sr}">${watchTexts[currentLanguage] || watchTexts.en}</div>
+                    </div>
+                </div>
+            `;
+
+            return wrapper;
         }
 
         // ==============================
