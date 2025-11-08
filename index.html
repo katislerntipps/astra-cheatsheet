@@ -578,6 +578,30 @@
             border-color: rgba(255, 107, 107, 0.5);
         }
 
+        .requirement-hint {
+            color: #B0B0B0;
+            font-size: 0.9em;
+            margin-top: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Progress Bar States */
+        .progress-fill.state-red {
+            background: linear-gradient(90deg, #FF4444 0%, #CC0000 100%);
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+        }
+
+        .progress-fill.state-yellow {
+            background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .progress-fill.state-green {
+            background: linear-gradient(90deg, #4BC0C0 0%, #3AAFAF 100%);
+            box-shadow: 0 0 20px rgba(75, 192, 192, 0.5);
+        }
+
         /* Language Toggle */
         .language-toggle {
             position: fixed;
@@ -1231,9 +1255,9 @@
                     <div class="checklist-text" data-de="Sind Lernmaterialien sichtbar?" data-en="Are study materials visible?" data-fr="Les matériaux d'étude sont-ils visibles?" data-pl="Czy materiały do nauki są widoczne?" data-it="I materiali di studio sono visibili?" data-es="¿Son visibles los materiales de estudio?" data-sr="Da li su materijali za učenje vidljivi?">Sind Lernmaterialien sichtbar?</div>
                 </div>
 
-                <div class="checklist-item">
+                <div class="checklist-item" data-required="true">
                     <div class="checkbox"></div>
-                    <div class="checklist-text" data-de="Ist die Beleuchtung hell und klar?" data-en="Is the lighting bright and clear?" data-fr="L'éclairage est-il vif et clair?" data-pl="Czy oświetlenie jest jasne i wyraźne?" data-it="L'illuminazione è luminosa e chiara?" data-es="¿Es la iluminación brillante y clara?" data-sr="Da li je osvetljenje svetlo i jasno?">Ist die Beleuchtung hell und klar?</div>
+                    <div class="checklist-text" data-de="Ist die Beleuchtung hell und klar?*" data-en="Is the lighting bright and clear?*" data-fr="L'éclairage est-il vif et clair?*" data-pl="Czy oświetlenie jest jasne i wyraźne?*" data-it="L'illuminazione è luminosa e chiara?*" data-es="¿Es la iluminación brillante y clara?*" data-sr="Da li je osvetljenje svetlo i jasno?*">Ist die Beleuchtung hell und klar?*</div>
                 </div>
 
                 <div class="checklist-item">
@@ -1241,9 +1265,9 @@
                     <div class="checklist-text" data-de="Ist das Video stabil (nicht verwackelt)?" data-en="Is the video stable (not shaky)?" data-fr="La vidéo est-elle stable (pas tremblante)?" data-pl="Czy film jest stabilny (nie trzęsie się)?" data-it="Il video è stabile (non tremante)?" data-es="¿Es el video estable (no tembloroso)?" data-sr="Da li je video stabilan (ne trese se)?">Ist das Video stabil (nicht verwackelt)?</div>
                 </div>
 
-                <div class="checklist-item">
+                <div class="checklist-item" data-required="true">
                     <div class="checkbox"></div>
-                    <div class="checklist-text" data-de="Ist Astra gut sichtbar und nicht gespiegelt?" data-en="Is Astra clearly visible and not mirrored?" data-fr="Astra est-il clairement visible et non inversé?" data-pl="Czy Astra jest wyraźnie widoczna i nie odbita?" data-it="Astra è chiaramente visibile e non specchiata?" data-es="¿Es Astra claramente visible y no reflejado?" data-sr="Da li je Astra jasno vidljiva i nije ogledana?">Ist Astra gut sichtbar und nicht gespiegelt?</div>
+                    <div class="checklist-text" data-de="Ist Astra gut sichtbar und nicht gespiegelt?*" data-en="Is Astra clearly visible and not mirrored?*" data-fr="Astra est-il clairement visible et non inversé?*" data-pl="Czy Astra jest wyraźnie widoczna i nie odbita?*" data-it="Astra è chiaramente visibile e non specchiata?*" data-es="¿Es Astra claramente visible y no reflejado?*" data-sr="Da li je Astra jasno vidljiva i nije ogledana?*">Ist Astra gut sichtbar und nicht gespiegelt?*</div>
                 </div>
 
                 <div class="checklist-item">
@@ -1251,9 +1275,9 @@
                     <div class="checklist-text" data-de="Habe ich eine starke Hook in den ersten 3 Sekunden?" data-en="Do I have a strong hook in the first 3 seconds?" data-fr="Ai-je une accroche forte dans les 3 premières secondes?" data-pl="Czy mam mocny haczyk w pierwszych 3 sekundach?" data-it="Ho un gancio forte nei primi 3 secondi?" data-es="¿Tengo un gancho fuerte en los primeros 3 segundos?" data-sr="Imam li jak huk u prvih 3 sekunde?">Habe ich eine starke Hook in den ersten 3 Sekunden?</div>
                 </div>
 
-                <div class="checklist-item">
+                <div class="checklist-item" data-required="true">
                     <div class="checkbox"></div>
-                    <div class="checklist-text" data-de="Steht Astra im Mittelpunkt meines Videos?" data-en="Is Astra the focus of my video?" data-fr="Astra est-il au centre de ma vidéo?" data-pl="Czy Astra jest w centrum mojego filmu?" data-it="Astra è al centro del mio video?" data-es="¿Es Astra el centro de mi video?" data-sr="Da li je Astra fokus mog videa?">Steht Astra im Mittelpunkt meines Videos?</div>
+                    <div class="checklist-text" data-de="Steht Astra im Mittelpunkt meines Videos?*" data-en="Is Astra the focus of my video?*" data-fr="Astra est-il au centre de ma vidéo?*" data-pl="Czy Astra jest w centrum mojego filmu?*" data-it="Astra è al centro del mio video?*" data-es="¿Es Astra el centro de mi video?*" data-sr="Da li je Astra fokus mog videa?*">Steht Astra im Mittelpunkt meines Videos?*</div>
                 </div>
 
                 <div class="checklist-item">
@@ -1261,12 +1285,13 @@
                     <div class="checklist-text" data-de="Habe ich das Video um eine Astra-Funktion herum aufgebaut?" data-en="Did I build the video around an Astra feature?" data-fr="Ai-je construit la vidéo autour d'une fonction Astra?" data-pl="Czy zbudowałem film wokół funkcji Astra?" data-it="Ho costruito il video attorno a una funzione Astra?" data-es="¿Construí el video alrededor de una función de Astra?" data-sr="Da li sam napravio video oko jedne funkcije Astre?">Habe ich das Video um eine Astra-Funktion herum aufgebaut?</div>
                 </div>
 
-                <div class="checklist-item">
+                <div class="checklist-item" data-required="true">
                     <div class="checkbox"></div>
-                    <div class="checklist-text" data-de="Der Creator ist gut zu erkennen" data-en="The creator is clearly visible" data-fr="Le créateur est clairement visible" data-pl="Twórca jest wyraźnie widoczny" data-it="Il creatore è chiaramente visibile" data-es="El creador es claramente visible" data-sr="Kreator je jasno vidljiv">Der Creator ist gut zu erkennen</div>
+                    <div class="checklist-text" data-de="Ist der Creator gut zu erkennen?*" data-en="Is the creator clearly visible?*" data-fr="Le créateur est-il clairement visible?*" data-pl="Czy twórca jest wyraźnie widoczny?*" data-it="Il creatore è chiaramente visibile?*" data-es="¿Es el creador claramente visible?*" data-sr="Da li je kreator jasno vidljiv?*">Ist der Creator gut zu erkennen?*</div>
                 </div>
 
                 <button class="reset-button" id="reset-checklist-btn" data-de="🔄 Checklist zurücksetzen" data-en="🔄 Reset Checklist" data-fr="🔄 Réinitialiser la Liste" data-pl="🔄 Zresetuj Listę Kontrolną" data-it="🔄 Resetta la Checklist" data-es="🔄 Restablecer Lista" data-sr="🔄 Resetuj Listu">🔄 Checklist zurücksetzen</button>
+                <p class="requirement-hint" data-de="*Diese Punkte sind die Mindestanforderungen, die ein Video erfüllen sollte." data-en="*These points are the minimum requirements that a video should meet." data-fr="*Ces points sont les exigences minimales qu'une vidéo doit respecter." data-pl="*Te punkty to minimalne wymagania, które film powinien spełniać." data-it="*Questi punti sono i requisiti minimi che un video dovrebbe soddisfare." data-es="*Estos puntos son los requisitos mínimos que debe cumplir un video." data-sr="*Ove tačke su minimalni zahtevi koje video treba da ispuni.">*Diese Punkte sind die Mindestanforderungen, die ein Video erfüllen sollte.</p>
             </div>
         </div>
     </div>
@@ -1454,6 +1479,9 @@
 
             // Update videos based on language
             updateVideosForLanguage(lang);
+
+            // Update progress bar text
+            updateProgress();
         }
 
         // ==============================
@@ -1647,17 +1675,82 @@
         }
 
         function updateProgress() {
-            const checked = document.querySelectorAll('.checklist-item.checked');
-            const total = domCache.checklistItems.length;
+            const allItems = document.querySelectorAll('.checklist-item');
+            const requiredItems = document.querySelectorAll('.checklist-item[data-required="true"]');
+            const checkedAll = document.querySelectorAll('.checklist-item.checked');
+            const checkedRequired = document.querySelectorAll('.checklist-item[data-required="true"].checked');
+
+            const total = allItems.length;
+            const totalRequired = requiredItems.length;
 
             if (total === 0) return; // Verhindere Division durch 0
 
-            const percentage = Math.round((checked.length / total) * 100);
+            const percentage = Math.round((checkedAll.length / total) * 100);
+            const allRequiredChecked = checkedRequired.length === totalRequired;
+            const allChecked = checkedAll.length === total;
+            const hasExtraChecked = checkedAll.length > totalRequired;
 
-            if (domCache.progressFill) {
-                domCache.progressFill.style.width = percentage + '%';
-                domCache.progressFill.textContent = percentage + '%';
+            if (!domCache.progressFill) return;
+
+            // Remove all state classes
+            domCache.progressFill.classList.remove('state-red', 'state-yellow', 'state-green');
+
+            // Determine state and text
+            let stateClass, text;
+
+            if (!allRequiredChecked) {
+                // Zustand 1: Rot - Mindestanforderungen nicht erfüllt
+                stateClass = 'state-red';
+                text = {
+                    de: 'Mindestanforderung nicht erfüllt',
+                    en: 'Minimum requirement not met',
+                    fr: 'Exigence minimale non remplie',
+                    pl: 'Minimalne wymaganie niespełnione',
+                    it: 'Requisito minimo non soddisfatto',
+                    es: 'Requisito mínimo no cumplido',
+                    sr: 'Minimalni zahtev nije ispunjen'
+                };
+            } else if (allRequiredChecked && !hasExtraChecked) {
+                // Zustand 2: Gelb - Nur Mindestanforderungen erfüllt
+                stateClass = 'state-yellow';
+                text = {
+                    de: 'Mindestanforderung erfüllt',
+                    en: 'Minimum requirement met',
+                    fr: 'Exigence minimale remplie',
+                    pl: 'Minimalne wymaganie spełnione',
+                    it: 'Requisito minimo soddisfatto',
+                    es: 'Requisito mínimo cumplido',
+                    sr: 'Minimalni zahtev ispunjen'
+                };
+            } else if (allChecked) {
+                // Zustand 4: Grün - Alle Punkte erfüllt
+                stateClass = 'state-green';
+                text = {
+                    de: 'Exzellent! Alle Kriterien erfüllt',
+                    en: 'Excellent! All criteria met',
+                    fr: 'Excellent! Tous les critères remplis',
+                    pl: 'Doskonale! Wszystkie kryteria spełnione',
+                    it: 'Eccellente! Tutti i criteri soddisfatti',
+                    es: 'Excelente! Todos los criterios cumplidos',
+                    sr: 'Odlično! Svi kriterijumi ispunjeni'
+                };
+            } else {
+                // Zustand 3: Grün - Mindestanforderungen + Extra
+                stateClass = 'state-green';
+                text = {
+                    de: 'Qualitätsstandards übertroffen',
+                    en: 'Quality standards exceeded',
+                    fr: 'Normes de qualité dépassées',
+                    pl: 'Standardy jakości przekroczone',
+                    it: 'Standard di qualità superati',
+                    es: 'Estándares de calidad superados',
+                    sr: 'Standardi kvaliteta prevaziđeni'
+                };
             }
+
+            domCache.progressFill.classList.add(stateClass);
+            domCache.progressFill.style.width = percentage + '%';
+            domCache.progressFill.textContent = text[currentLanguage] || text.en;
         }
 
         function resetChecklist() {
