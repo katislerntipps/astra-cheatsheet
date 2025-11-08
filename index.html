@@ -816,6 +816,281 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ============================== */
+        /* FAQ BUBBLE & OVERLAY STYLES */
+        /* ============================== */
+
+        /* FAQ Bubble Button - unten rechts */
+        .faq-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4285F4 0%, #6A5ACD 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.5), 0 0 40px rgba(106, 90, 205, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-bubble:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 12px 35px rgba(66, 133, 244, 0.7), 0 0 60px rgba(106, 90, 205, 0.5);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .faq-bubble-icon {
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Overlay - Dim-Effekt für Hintergrund */
+        .faq-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1001;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .faq-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* FAQ Popup Container */
+        .faq-popup {
+            background: linear-gradient(145deg, #2C2C2C 0%, #212121 100%);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 100px rgba(66, 133, 244, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* FAQ Header */
+        .faq-header {
+            padding: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(145deg, #3A3A3A 0%, #2C2C2C 100%);
+        }
+
+        .faq-title {
+            font-size: 2em;
+            color: #F0F0F0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .faq-close {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            color: #F0F0F0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .faq-close:hover {
+            background: rgba(255, 59, 48, 0.8);
+            transform: rotate(90deg);
+        }
+
+        /* FAQ Content */
+        .faq-content {
+            padding: 20px 30px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .faq-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .faq-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .faq-content::-webkit-scrollbar-thumb {
+            background: rgba(66, 133, 244, 0.5);
+            border-radius: 10px;
+        }
+
+        .faq-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(66, 133, 244, 0.7);
+        }
+
+        /* FAQ Item */
+        .faq-item {
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(66, 133, 244, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* FAQ Question */
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question-text {
+            font-size: 1.15em;
+            color: #F0F0F0;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .faq-arrow {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(66, 133, 244, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .faq-arrow svg {
+            width: 16px;
+            height: 16px;
+            fill: #4285F4;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-arrow {
+            background: rgba(66, 133, 244, 0.4);
+        }
+
+        .faq-item.active .faq-arrow svg {
+            transform: rotate(180deg);
+        }
+
+        /* FAQ Answer */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .faq-answer-text {
+            color: #B0B0B0;
+            font-size: 1em;
+            line-height: 1.6;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .faq-bubble {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .faq-bubble-icon {
+                font-size: 28px;
+            }
+
+            .faq-popup {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .faq-header {
+                padding: 20px;
+            }
+
+            .faq-title {
+                font-size: 1.5em;
+            }
+
+            .faq-content {
+                padding: 15px 20px;
+            }
+
+            .faq-question-text {
+                font-size: 1em;
+            }
+
+            .faq-answer-text {
+                font-size: 0.95em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1884,6 +2159,188 @@
         window.addEventListener('unhandledrejection', (event) => {
             console.error('Unbehandelter Promise-Fehler:', event.reason);
         });
+
+        // ==============================
+        // FAQ FUNCTIONALITY
+        // ==============================
+
+        function initFAQ() {
+            const faqBubble = document.getElementById('faq-bubble');
+            const faqOverlay = document.getElementById('faq-overlay');
+            const faqClose = document.getElementById('faq-close');
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            // Open FAQ Overlay
+            if (faqBubble) {
+                faqBubble.addEventListener('click', () => {
+                    faqOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
+            }
+
+            // Close FAQ Overlay
+            function closeFAQ() {
+                faqOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            if (faqClose) {
+                faqClose.addEventListener('click', closeFAQ);
+            }
+
+            // Close when clicking outside the popup
+            if (faqOverlay) {
+                faqOverlay.addEventListener('click', (e) => {
+                    if (e.target === faqOverlay) {
+                        closeFAQ();
+                    }
+                });
+            }
+
+            // Toggle FAQ Items (Accordion)
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+
+                        // Optional: Close other items (if you want only one open at a time)
+                        // faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+
+                        // Toggle current item
+                        if (isActive) {
+                            item.classList.remove('active');
+                        } else {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // Close on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && faqOverlay.classList.contains('active')) {
+                    closeFAQ();
+                }
+            });
+        }
+
+        // Initialize FAQ on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... existing initialization code ...
+            initFAQ();
+        });
     </script>
+
+    <!-- FAQ Bubble Button -->
+    <div id="faq-bubble" class="faq-bubble">
+        <div class="faq-bubble-icon">?</div>
+    </div>
+
+    <!-- FAQ Overlay -->
+    <div id="faq-overlay" class="faq-overlay">
+        <div class="faq-popup">
+            <div class="faq-header">
+                <div class="faq-title">
+                    <span>💡</span>
+                    <span data-de="Häufig gestellte Fragen" data-en="Frequently Asked Questions" data-fr="Questions fréquemment posées" data-pl="Często zadawane pytania" data-it="Domande frequenti" data-es="Preguntas frecuentes" data-sr="Često postavljana pitanja">Frequently Asked Questions</span>
+                </div>
+                <button id="faq-close" class="faq-close">×</button>
+            </div>
+
+            <div class="faq-content">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text" data-de="Was ist Astra AI?" data-en="What is Astra AI?" data-fr="Qu'est-ce qu'Astra AI?" data-pl="Co to jest Astra AI?" data-it="Cos'è Astra AI?" data-es="¿Qué es Astra AI?" data-sr="Šta je Astra AI?">What is Astra AI?</div>
+                        <div class="faq-arrow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text" data-de="Astra AI ist eine innovative Plattform, die Creator dabei unterstützt, qualitativ hochwertige TikTok-Inhalte zu erstellen. Wir bieten umfassende Guidelines, technische Anforderungen und Best Practices für erfolgreiche Creator." data-en="Astra AI is an innovative platform that helps creators produce high-quality TikTok content. We provide comprehensive guidelines, technical requirements, and best practices for successful creators." data-fr="Astra AI est une plateforme innovante qui aide les créateurs à produire du contenu TikTok de haute qualité. Nous fournissons des directives complètes, des exigences techniques et des meilleures pratiques pour les créateurs à succès." data-pl="Astra AI to innowacyjna platforma, która pomaga twórcom tworzyć wysokiej jakości treści na TikTok. Dostarczamy kompleksowe wytyczne, wymagania techniczne i najlepsze praktyki dla odnoszących sukcesy twórców." data-it="Astra AI è una piattaforma innovativa che aiuta i creator a produrre contenuti TikTok di alta qualità. Forniamo linee guida complete, requisiti tecnici e best practice per creator di successo." data-es="Astra AI es una plataforma innovadora que ayuda a los creadores a producir contenido de TikTok de alta calidad. Proporcionamos directrices completas, requisitos técnicos y mejores prácticas para creadores exitosos." data-sr="Astra AI je inovativna platforma koja pomaže kreatorima da proizvode visokokvalitetan TikTok sadržaj. Pružamo sveobuhvatne smernice, tehničke zahteve i najbolje prakse za uspešne kreatore.">Astra AI is an innovative platform that helps creators produce high-quality TikTok content. We provide comprehensive guidelines, technical requirements, and best practices for successful creators.</div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text" data-de="Welche technischen Anforderungen gibt es für Videos?" data-en="What are the technical requirements for videos?" data-fr="Quelles sont les exigences techniques pour les vidéos?" data-pl="Jakie są wymagania techniczne dotyczące filmów?" data-it="Quali sono i requisiti tecnici per i video?" data-es="¿Cuáles son los requisitos técnicos para los videos?" data-sr="Koji su tehnički zahtevi za video snimke?">What are the technical requirements for videos?</div>
+                        <div class="faq-arrow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text" data-de="Videos sollten im 9:16 Hochformat aufgenommen werden, mit einer Auflösung von mindestens 1080x1920 Pixeln. Die Beleuchtung sollte gleichmäßig und hell sein, und der Ton muss klar und deutlich hörbar sein. Vermeiden Sie Hintergrundgeräusche und nutzen Sie nach Möglichkeit ein externes Mikrofon." data-en="Videos should be recorded in 9:16 portrait format, with a resolution of at least 1080x1920 pixels. Lighting should be even and bright, and audio must be clear and audible. Avoid background noise and use an external microphone when possible." data-fr="Les vidéos doivent être enregistrées au format portrait 9:16, avec une résolution d'au moins 1080x1920 pixels. L'éclairage doit être uniforme et lumineux, et l'audio doit être clair et audible. Évitez le bruit de fond et utilisez un microphone externe si possible." data-pl="Filmy powinny być nagrane w formacie pionowym 9:16, z rozdzielczością co najmniej 1080x1920 pikseli. Oświetlenie powinno być równomierne i jasne, a dźwięk musi być czysty i słyszalny. Unikaj hałasu w tle i używaj zewnętrznego mikrofonu, jeśli to możliwe." data-it="I video dovrebbero essere registrati in formato verticale 9:16, con una risoluzione di almeno 1080x1920 pixel. L'illuminazione dovrebbe essere uniforme e luminosa, e l'audio deve essere chiaro e udibile. Evita i rumori di fondo e usa un microfono esterno quando possibile." data-es="Los videos deben grabarse en formato vertical 9:16, con una resolución de al menos 1080x1920 píxeles. La iluminación debe ser uniforme y brillante, y el audio debe ser claro y audible. Evita el ruido de fondo y usa un micrófono externo cuando sea posible." data-sr="Video snimci treba da budu snimljeni u portretnom formatu 9:16, sa rezolucijom od najmanje 1080x1920 piksela. Osvetljenje treba da bude ravnomerno i svetlo, a zvuk mora biti čist i čujan. Izbegavajte pozadinsku buku i koristite eksterni mikrofon kada je moguće.">Videos should be recorded in 9:16 portrait format, with a resolution of at least 1080x1920 pixels. Lighting should be even and bright, and audio must be clear and audible. Avoid background noise and use an external microphone when possible.</div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text" data-de="Wie lange sollte mein Video sein?" data-en="How long should my video be?" data-fr="Quelle devrait être la durée de ma vidéo?" data-pl="Jak długi powinien być mój film?" data-it="Quanto dovrebbe durare il mio video?" data-es="¿Cuánto debe durar mi video?" data-sr="Koliko treba da traje moj video?">How long should my video be?</div>
+                        <div class="faq-arrow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text" data-de="Die optimale Videolänge für TikTok liegt zwischen 15 und 60 Sekunden. Wichtig ist, dass die ersten 3 Sekunden besonders fesselnd sind, um die Aufmerksamkeit der Zuschauer zu gewinnen. Halten Sie Ihre Inhalte prägnant und auf den Punkt gebracht." data-en="The optimal video length for TikTok is between 15 and 60 seconds. It's important that the first 3 seconds are particularly engaging to capture viewers' attention. Keep your content concise and to the point." data-fr="La durée vidéo optimale pour TikTok est comprise entre 15 et 60 secondes. Il est important que les 3 premières secondes soient particulièrement engageantes pour capter l'attention des spectateurs. Gardez votre contenu concis et direct." data-pl="Optymalna długość filmu na TikTok wynosi od 15 do 60 sekund. Ważne jest, aby pierwsze 3 sekundy były szczególnie wciągające, aby przyciągnąć uwagę widzów. Utrzymuj swoje treści zwięzłe i na temat." data-it="La durata ottimale del video per TikTok è compresa tra 15 e 60 secondi. È importante che i primi 3 secondi siano particolarmente coinvolgenti per catturare l'attenzione degli spettatori. Mantieni i tuoi contenuti concisi e al punto." data-es="La duración óptima del video para TikTok es entre 15 y 60 segundos. Es importante que los primeros 3 segundos sean particularmente atractivos para captar la atención de los espectadores. Mantén tu contenido conciso y directo." data-sr="Optimalna dužina video snimka za TikTok je između 15 i 60 sekundi. Važno je da prvih 3 sekunde budu posebno privlačne kako bi privukle pažnju gledalaca. Održavajte svoj sadržaj konciznim i na temu.">The optimal video length for TikTok is between 15 and 60 seconds. It's important that the first 3 seconds are particularly engaging to capture viewers' attention. Keep your content concise and to the point.</div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text" data-de="Muss ich ein Skript verwenden?" data-en="Do I need to use a script?" data-fr="Dois-je utiliser un script?" data-pl="Czy muszę używać skryptu?" data-it="Devo usare uno script?" data-es="¿Necesito usar un guion?" data-sr="Da li treba da koristim skriptu?">Do I need to use a script?</div>
+                        <div class="faq-arrow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text" data-de="Ja, ein gut strukturiertes Skript ist essentiell für professionelle Content-Erstellung. Es hilft Ihnen, Ihre Botschaft klar zu vermitteln, Füllwörter zu vermeiden und innerhalb des Zeitlimits zu bleiben. Planen Sie Ihre Hook, den Hauptinhalt und Ihren Call-to-Action im Voraus." data-en="Yes, a well-structured script is essential for professional content creation. It helps you deliver your message clearly, avoid filler words, and stay within the time limit. Plan your hook, main content, and call-to-action in advance." data-fr="Oui, un script bien structuré est essentiel pour la création de contenu professionnel. Il vous aide à transmettre votre message clairement, à éviter les mots de remplissage et à rester dans la limite de temps. Planifiez votre accroche, le contenu principal et votre appel à l'action à l'avance." data-pl="Tak, dobrze ustrukturyzowany skrypt jest niezbędny do profesjonalnego tworzenia treści. Pomaga jasno przekazać wiadomość, unikać słów wypełniających i zmieścić się w limicie czasu. Zaplanuj swój hook, główną treść i wezwanie do działania z wyprzedzeniem." data-it="Sì, uno script ben strutturato è essenziale per la creazione di contenuti professionali. Ti aiuta a trasmettere il tuo messaggio chiaramente, evitare parole di riempimento e rimanere entro il limite di tempo. Pianifica il tuo hook, il contenuto principale e la tua call-to-action in anticipo." data-es="Sí, un guion bien estructurado es esencial para la creación de contenido profesional. Te ayuda a transmitir tu mensaje claramente, evitar palabras de relleno y mantenerte dentro del límite de tiempo. Planifica tu gancho, contenido principal y llamada a la acción con anticipación." data-sr="Da, dobro strukturirana skripta je neophodna za profesionalnu kreaciju sadržaja. Pomaže vam da jasno prenesete poruku, izbegnete reči punjenja i ostanete u vremenskom ograničenju. Planirajte svoj hook, glavni sadržaj i poziv na akciju unapred.">Yes, a well-structured script is essential for professional content creation. It helps you deliver your message clearly, avoid filler words, and stay within the time limit. Plan your hook, main content, and call-to-action in advance.</div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text" data-de="Was sollte ich bei der Beleuchtung beachten?" data-en="What should I consider for lighting?" data-fr="Que dois-je considérer pour l'éclairage?" data-pl="Na co powinienem zwrócić uwagę przy oświetleniu?" data-it="Cosa devo considerare per l'illuminazione?" data-es="¿Qué debo considerar para la iluminación?" data-sr="Šta treba da razmatram za osvetljenje?">What should I consider for lighting?</div>
+                        <div class="faq-arrow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text" data-de="Verwenden Sie natürliches Licht oder ein Ring-Licht für gleichmäßige Ausleuchtung. Positionieren Sie die Lichtquelle vor Ihnen (nicht hinter Ihnen) auf Augenhöhe. Vermeiden Sie harte Schatten und zu grelles Licht. Testen Sie verschiedene Positionen, um das beste Ergebnis zu erzielen." data-en="Use natural light or a ring light for even illumination. Position the light source in front of you (not behind you) at eye level. Avoid harsh shadows and overly bright light. Test different positions to achieve the best result." data-fr="Utilisez la lumière naturelle ou un ring light pour un éclairage uniforme. Positionnez la source lumineuse devant vous (pas derrière vous) à hauteur des yeux. Évitez les ombres dures et la lumière trop vive. Testez différentes positions pour obtenir le meilleur résultat." data-pl="Używaj naturalnego światła lub lampy pierścieniowej dla równomiernego oświetlenia. Umieść źródło światła przed sobą (nie za sobą) na wysokości oczu. Unikaj ostrych cieni i zbyt jasnego światła. Testuj różne pozycje, aby osiągnąć najlepszy rezultat." data-it="Usa la luce naturale o un ring light per un'illuminazione uniforme. Posiziona la fonte di luce davanti a te (non dietro di te) all'altezza degli occhi. Evita ombre dure e luce eccessivamente brillante. Testa diverse posizioni per ottenere il miglior risultato." data-es="Usa luz natural o un ring light para una iluminación uniforme. Posiciona la fuente de luz frente a ti (no detrás de ti) a la altura de los ojos. Evita sombras duras y luz demasiado brillante. Prueba diferentes posiciones para lograr el mejor resultado." data-sr="Koristite prirodno svetlo ili ring light za ravnomerno osvetljenje. Pozicionirajte izvor svetlosti ispred sebe (ne iza sebe) na visini očiju. Izbegavajte oštre senke i previše jarko svetlo. Testirajte različite pozicije da biste postigli najbolji rezultat.">Use natural light or a ring light for even illumination. Position the light source in front of you (not behind you) at eye level. Avoid harsh shadows and overly bright light. Test different positions to achieve the best result.</div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text" data-de="Wie kann ich meine Videos verbessern?" data-en="How can I improve my videos?" data-fr="Comment puis-je améliorer mes vidéos?" data-pl="Jak mogę poprawić moje filmy?" data-it="Come posso migliorare i miei video?" data-es="¿Cómo puedo mejorar mis videos?" data-sr="Kako mogu poboljšati svoje video snimke?">How can I improve my videos?</div>
+                        <div class="faq-arrow">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-text" data-de="Nutzen Sie unsere Quick-Check-Liste vor jedem Upload. Achten Sie auf authentische Präsentation, klare Bildqualität, guten Ton und eine fesselnde Story. Analysieren Sie erfolgreiche Videos in Ihrer Nische und lernen Sie von anderen Creatorn. Bleiben Sie konsistent und authentisch!" data-en="Use our Quick-Check list before each upload. Focus on authentic presentation, clear image quality, good audio, and an engaging story. Analyze successful videos in your niche and learn from other creators. Stay consistent and authentic!" data-fr="Utilisez notre liste de contrôle rapide avant chaque téléchargement. Concentrez-vous sur une présentation authentique, une qualité d'image claire, un bon son et une histoire engageante. Analysez les vidéos réussies dans votre niche et apprenez des autres créateurs. Restez cohérent et authentique!" data-pl="Użyj naszej listy Quick-Check przed każdym przesłaniem. Skup się na autentycznej prezentacji, wyraźnej jakości obrazu, dobrym dźwięku i wciągającej historii. Analizuj udane filmy w swojej niszy i ucz się od innych twórców. Bądź konsekwentny i autentyczny!" data-it="Usa la nostra lista Quick-Check prima di ogni caricamento. Concentrati su presentazione autentica, qualità dell'immagine chiara, buon audio e una storia coinvolgente. Analizza i video di successo nella tua nicchia e impara dagli altri creator. Rimani coerente e autentico!" data-es="Usa nuestra lista de Quick-Check antes de cada carga. Concéntrate en presentación auténtica, calidad de imagen clara, buen audio y una historia atractiva. Analiza videos exitosos en tu nicho y aprende de otros creadores. ¡Mantente consistente y auténtico!" data-sr="Koristite našu Quick-Check listu pre svakog otpremanja. Fokusirajte se na autentičnu prezentaciju, jasnu kvalitet slike, dobar zvuk i privlačnu priču. Analizirajte uspešne video snimke u vašoj niši i učite od drugih kreatora. Ostanite dosledni i autentični!">Use our Quick-Check list before each upload. Focus on authentic presentation, clear image quality, good audio, and an engaging story. Analyze successful videos in your niche and learn from other creators. Stay consistent and authentic!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
