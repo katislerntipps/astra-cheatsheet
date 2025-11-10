@@ -2025,7 +2025,8 @@
 
             domCache.progressFill.classList.add(stateClass);
             domCache.progressFill.style.width = percentage + '%';
-            domCache.progressFill.textContent = text[currentLanguage] || text.en;
+            // Text nur anzeigen, wenn mindestens 3 Punkte ausgewählt sind
+            domCache.progressFill.textContent = checkedAll.length >= 3 ? (text[currentLanguage] || text.en) : '';
         }
 
         function resetChecklist() {
