@@ -842,6 +842,150 @@
         }
 
         /* ============================== */
+        /* VIDEO CLIPS SECTION STYLES */
+        /* ============================== */
+
+        .video-clips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .video-clip-card {
+            background: #2C2C2C;
+            background: linear-gradient(145deg, #2C2C2C 0%, #212121 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .video-clip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 50px rgba(66, 133, 244, 0.15);
+            border-color: rgba(66, 133, 244, 0.2);
+        }
+
+        .video-clip-thumbnail {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .video-clip-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-clip-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-clip-play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.7);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+        }
+
+        .video-clip-play-overlay svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+            margin-left: 5px;
+        }
+
+        .video-clip-card:hover .video-clip-play-overlay {
+            background: rgba(66, 133, 244, 0.9);
+            transform: translate(-50%, -50%) scale(1.1);
+            border-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 30px rgba(66, 133, 244, 0.8);
+        }
+
+        .video-clip-info {
+            padding: 20px;
+        }
+
+        .video-clip-title {
+            color: #F0F0F0;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .video-clip-description {
+            color: #B0B0B0;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .video-clip-download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #4285F4 0%, #3A7CF7 100%);
+            color: #F0F0F0;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 1px solid rgba(66, 133, 244, 0.3);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1em;
+            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+            cursor: pointer;
+        }
+
+        .video-clip-download-btn:hover {
+            background: linear-gradient(135deg, #5A95FF 0%, #4A8CFF 100%);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.5);
+            border-color: rgba(66, 133, 244, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .video-clip-download-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .video-clips-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .video-clips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================== */
         /* FAQ BUBBLE & OVERLAY STYLES */
         /* ============================== */
 
@@ -1145,6 +1289,9 @@
             </button>
             <button class="tab-button" data-tab="2" data-de="✅ Quick-Check" data-en="✅ Quick-Check" data-fr="✅ Contrôle Rapide" data-pl="✅ Szybka Kontrola" data-it="✅ Controllo Rapido" data-es="✅ Control Rápido" data-sr="✅ Brza Provera">
                \u00A0✅ Quick-Check
+            </button>
+            <button class="tab-button" data-tab="3" data-de="🎥 Video-Clips" data-en="🎥 Video Clips" data-fr="🎥 Clips Vidéo" data-pl="🎥 Klipy Wideo" data-it="🎥 Clip Video" data-es="🎥 Clips de Vídeo" data-sr="🎥 Video Klipovi">
+                🎥 Video-Clips
             </button>
         </div>
 
@@ -1565,6 +1712,90 @@
 
                 <button class="reset-button" id="reset-checklist-btn" data-de="🔄 Checklist zurücksetzen" data-en="🔄 Reset Checklist" data-fr="🔄 Réinitialiser la Liste" data-pl="🔄 Zresetuj Listę Kontrolną" data-it="🔄 Resetta la Checklist" data-es="🔄 Restablecer Lista" data-sr="🔄 Resetuj Listu">🔄 Checklist zurücksetzen</button>
                 <p class="requirement-hint" data-de="*Dieser Punkt wird stark empfohlen. Er ist aber nicht immer vorausgesetzt (situationsabhängig)." data-en="*This point is highly recommended. However, it is not always required (situation-dependent)." data-fr="*Ce point est fortement recommandé. Cependant, il n'est pas toujours requis (selon la situation)." data-pl="*Ten punkt jest bardzo zalecany. Jednak nie zawsze jest wymagany (zależy od sytuacji)." data-it="*Questo punto è altamente raccomandato. Tuttavia, non è sempre richiesto (dipende dalla situazione)." data-es="*Este punto es muy recomendado. Sin embargo, no siempre es requerido (depende de la situación)." data-sr="*Ova tačka je veoma preporučena. Međutim, nije uvek obavezna (zavisi od situacije).">*Dieser Punkt wird stark empfohlen. Er ist aber nicht immer vorausgesetzt (situationsabhängig).</p>
+            </div>
+        </div>
+
+        <!-- TAB 4: Video-Clips -->
+        <div class="tab-content" id="tab3">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎥</div>
+                    <div class="section-title">
+                        <h2 data-de="Video-Clips für Creator" data-en="Video Clips for Creators" data-fr="Clips Vidéo pour Créateurs" data-pl="Klipy Wideo dla Twórców" data-it="Clip Video per Creator" data-es="Clips de Vídeo para Creadores" data-sr="Video Klipovi za Kreatore">Video-Clips für Creator</h2>
+                    </div>
+                </div>
+
+                <div class="content-box info">
+                    <p data-de="Hier findest du fertige Video-Clips, die du für deine TikToks verwenden kannst. Lade sie einfach herunter und integriere sie in deine Content-Erstellung!" data-en="Here you'll find ready-made video clips that you can use for your TikToks. Simply download them and integrate them into your content creation!" data-fr="Vous trouverez ici des clips vidéo prêts à l'emploi que vous pouvez utiliser pour vos TikToks. Téléchargez-les simplement et intégrez-les dans votre création de contenu!" data-pl="Tutaj znajdziesz gotowe klipy wideo, które możesz wykorzystać w swoich TikTokach. Po prostu pobierz je i zintegruj z tworzeniem treści!" data-it="Qui troverai clip video già pronti che puoi usare per i tuoi TikTok. Scaricali semplicemente e integra nella tua creazione di contenuti!" data-es="Aquí encontrarás clips de vídeo listos para usar en tus TikToks. ¡Simplemente descárgalos e intégralos en tu creación de contenido!" data-sr="Ovde ćete pronaći gotove video klipove koje možete koristiti za svoje TikTok snimke. Jednostavno ih preuzmite i integrirajte u svoje kreiranje sadržaja!">Hier findest du fertige Video-Clips, die du für deine TikToks verwenden kannst. Lade sie einfach herunter und integriere sie in deine Content-Erstellung!</p>
+                </div>
+
+                <div class="video-clips-grid">
+                    <!-- Video Clip 1 - Beispiel -->
+                    <div class="video-clip-card">
+                        <div class="video-clip-thumbnail">
+                            <img src="video-clips/thumbnails/clip1.jpg" alt="Video Clip 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
+                            <div class="video-clip-play-overlay">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-clip-info">
+                            <div class="video-clip-title" data-de="Beispiel Clip 1" data-en="Example Clip 1" data-fr="Exemple Clip 1" data-pl="Przykładowy Klip 1" data-it="Esempio Clip 1" data-es="Ejemplo Clip 1" data-sr="Primer Klip 1">Beispiel Clip 1</div>
+                            <div class="video-clip-description" data-de="Kurze Beschreibung des Video-Clips. Perfekt für die Einleitung deines TikToks!" data-en="Short description of the video clip. Perfect for introducing your TikTok!" data-fr="Courte description du clip vidéo. Parfait pour introduire votre TikTok!" data-pl="Krótki opis klipu wideo. Idealny do wprowadzenia twojego TikToka!" data-it="Breve descrizione del clip video. Perfetto per introdurre il tuo TikTok!" data-es="Breve descripción del clip de vídeo. ¡Perfecto para introducir tu TikTok!" data-sr="Kratak opis video klipa. Savršeno za uvod u vaš TikTok!">Kurze Beschreibung des Video-Clips. Perfekt für die Einleitung deines TikToks!</div>
+                            <a href="video-clips/clip1.mp4" download class="video-clip-download-btn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                                </svg>
+                                <span data-de="Download MP4" data-en="Download MP4" data-fr="Télécharger MP4" data-pl="Pobierz MP4" data-it="Scarica MP4" data-es="Descargar MP4" data-sr="Preuzmi MP4">Download MP4</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Video Clip 2 - Beispiel -->
+                    <div class="video-clip-card">
+                        <div class="video-clip-thumbnail">
+                            <img src="video-clips/thumbnails/clip2.jpg" alt="Video Clip 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
+                            <div class="video-clip-play-overlay">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-clip-info">
+                            <div class="video-clip-title" data-de="Beispiel Clip 2" data-en="Example Clip 2" data-fr="Exemple Clip 2" data-pl="Przykładowy Klip 2" data-it="Esempio Clip 2" data-es="Ejemplo Clip 2" data-sr="Primer Klip 2">Beispiel Clip 2</div>
+                            <div class="video-clip-description" data-de="Ein weiterer praktischer Clip für deine Videos. Ideal für Übergänge!" data-en="Another practical clip for your videos. Ideal for transitions!" data-fr="Un autre clip pratique pour vos vidéos. Idéal pour les transitions!" data-pl="Kolejny praktyczny klip do twoich filmów. Idealny do przejść!" data-it="Un altro clip pratico per i tuoi video. Ideale per le transizioni!" data-es="Otro clip práctico para tus vídeos. ¡Ideal para transiciones!" data-sr="Još jedan praktičan klip za vaše video snimke. Idealan za prelaze!">Ein weiterer praktischer Clip für deine Videos. Ideal für Übergänge!</div>
+                            <a href="video-clips/clip2.mp4" download class="video-clip-download-btn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                                </svg>
+                                <span data-de="Download MP4" data-en="Download MP4" data-fr="Télécharger MP4" data-pl="Pobierz MP4" data-it="Scarica MP4" data-es="Descargar MP4" data-sr="Preuzmi MP4">Download MP4</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Video Clip 3 - Beispiel -->
+                    <div class="video-clip-card">
+                        <div class="video-clip-thumbnail">
+                            <img src="video-clips/thumbnails/clip3.jpg" alt="Video Clip 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
+                            <div class="video-clip-play-overlay">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="video-clip-info">
+                            <div class="video-clip-title" data-de="Beispiel Clip 3" data-en="Example Clip 3" data-fr="Exemple Clip 3" data-pl="Przykładowy Klip 3" data-it="Esempio Clip 3" data-es="Ejemplo Clip 3" data-sr="Primer Klip 3">Beispiel Clip 3</div>
+                            <div class="video-clip-description" data-de="Abschluss-Clip für deine TikToks. Sorgt für einen professionellen Eindruck!" data-en="Closing clip for your TikToks. Creates a professional impression!" data-fr="Clip de clôture pour vos TikToks. Crée une impression professionnelle!" data-pl="Klip kończący dla twoich TikToków. Sprawia profesjonalne wrażenie!" data-it="Clip di chiusura per i tuoi TikTok. Crea un'impressione professionale!" data-es="Clip de cierre para tus TikToks. ¡Crea una impresión profesional!" data-sr="Završni klip za vaše TikTok snimke. Stvara profesionalan utisak!">Abschluss-Clip für deine TikToks. Sorgt für einen professionellen Eindruck!</div>
+                            <a href="video-clips/clip3.mp4" download class="video-clip-download-btn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                                </svg>
+                                <span data-de="Download MP4" data-en="Download MP4" data-fr="Télécharger MP4" data-pl="Pobierz MP4" data-it="Scarica MP4" data-es="Descargar MP4" data-sr="Preuzmi MP4">Download MP4</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
