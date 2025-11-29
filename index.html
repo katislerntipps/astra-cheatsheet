@@ -881,12 +881,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .video-clip-thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .video-clip-play-overlay {
@@ -984,6 +990,71 @@
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
                 gap: 8px;
             }
+        }
+
+        /* ============================== */
+        /* VIDEO MODAL STYLES */
+        /* ============================== */
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: #2C2C2C;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #F0F0F0;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .video-modal-close:hover {
+            color: #4285F4;
+        }
+
+        #videoModalTitle {
+            color: #F0F0F0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #modalVideo {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* ============================== */
@@ -1732,9 +1803,11 @@
 
                 <div class="video-clips-grid">
                     <!-- Video Clip 1 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip1.jpg" alt="Video Clip 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
+                    <div class="video-clip-card" data-video="video-clips/clip1.mov">
+                        <div class="video-clip-thumbnail" onclick="openVideoModal('video-clips/clip1.mov', 'Clip 1')">
+                            <video preload="metadata" muted playsinline>
+                                <source src="video-clips/clip1.mov#t=0.1" type="video/quicktime">
+                            </video>
                             <div class="video-clip-play-overlay">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 5v14l11-7z"/>
@@ -1744,7 +1817,7 @@
                         <div class="video-clip-info">
                             <div class="video-clip-title" data-de="Clip 1" data-en="Clip 1" data-fr="Clip 1" data-pl="Klip 1" data-it="Clip 1" data-es="Clip 1" data-sr="Klip 1">Clip 1</div>
                             <div class="video-clip-description" data-de="Video-Clip 1" data-en="Video Clip 1" data-fr="Clip Vidéo 1" data-pl="Klip Wideo 1" data-it="Clip Video 1" data-es="Clip de Vídeo 1" data-sr="Video Klip 1">Video-Clip 1</div>
-                            <a href="video-clips/clip1.mov" download class="video-clip-download-btn">
+                            <a href="video-clips/clip1.mov" download="clip1.mov" class="video-clip-download-btn">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
                                 </svg>
@@ -1754,9 +1827,11 @@
                     </div>
 
                     <!-- Video Clip 2 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip2.jpg" alt="Video Clip 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
+                    <div class="video-clip-card" data-video="video-clips/clip2.mov">
+                        <div class="video-clip-thumbnail" onclick="openVideoModal('video-clips/clip2.mov', 'Clip 2')">
+                            <video preload="metadata" muted playsinline>
+                                <source src="video-clips/clip2.mov#t=0.1" type="video/quicktime">
+                            </video>
                             <div class="video-clip-play-overlay">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 5v14l11-7z"/>
@@ -1766,19 +1841,19 @@
                         <div class="video-clip-info">
                             <div class="video-clip-title" data-de="Clip 2" data-en="Clip 2" data-fr="Clip 2" data-pl="Klip 2" data-it="Clip 2" data-es="Clip 2" data-sr="Klip 2">Clip 2</div>
                             <div class="video-clip-description" data-de="Video-Clip 2" data-en="Video Clip 2" data-fr="Clip Vidéo 2" data-pl="Klip Wideo 2" data-it="Clip Video 2" data-es="Clip de Vídeo 2" data-sr="Video Klip 2">Video-Clip 2</div>
-                            <a href="video-clips/clip2.mov" download class="video-clip-download-btn">
+                            <a href="video-clips/clip2.mov" download="clip2.mov" class="video-clip-download-btn">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
                                 </svg>
                                 <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
                             </a>
                         </div>
-                    </div>
-
-                    <!-- Video Clip 3 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip3.jpg" alt="Video Clip 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
+                    </div>                    <!-- Video Clip 3 -->
+                    <div class="video-clip-card" data-video="video-clips/clip3.mov">
+                        <div class="video-clip-thumbnail" onclick="openVideoModal('video-clips/clip3.mov', 'Clip 3')">
+                            <video preload="metadata" muted playsinline>
+                                <source src="video-clips/clip3.mov#t=0.1" type="video/quicktime">
+                            </video>
                             <div class="video-clip-play-overlay">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 5v14l11-7z"/>
@@ -1788,7 +1863,7 @@
                         <div class="video-clip-info">
                             <div class="video-clip-title" data-de="Clip 3" data-en="Clip 3" data-fr="Clip 3" data-pl="Klip 3" data-it="Clip 3" data-es="Clip 3" data-sr="Klip 3">Clip 3</div>
                             <div class="video-clip-description" data-de="Video-Clip 3" data-en="Video Clip 3" data-fr="Clip Vidéo 3" data-pl="Klip Wideo 3" data-it="Clip Video 3" data-es="Clip de Vídeo 3" data-sr="Video Klip 3">Video-Clip 3</div>
-                            <a href="video-clips/clip3.mov" download class="video-clip-download-btn">
+                            <a href="video-clips/clip3.mov" download="clip3.mov" class="video-clip-download-btn">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
                                 </svg>
@@ -1796,184 +1871,18 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- Video Clip 4 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip4.jpg" alt="Video Clip 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 4" data-en="Clip 4" data-fr="Clip 4" data-pl="Klip 4" data-it="Clip 4" data-es="Clip 4" data-sr="Klip 4">Clip 4</div>
-                            <div class="video-clip-description" data-de="Video-Clip 4" data-en="Video Clip 4" data-fr="Clip Vidéo 4" data-pl="Klip Wideo 4" data-it="Clip Video 4" data-es="Clip de Vídeo 4" data-sr="Video Klip 4">Video-Clip 4</div>
-                            <a href="video-clips/clip4.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 5 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip5.jpg" alt="Video Clip 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 5" data-en="Clip 5" data-fr="Clip 5" data-pl="Klip 5" data-it="Clip 5" data-es="Clip 5" data-sr="Klip 5">Clip 5</div>
-                            <div class="video-clip-description" data-de="Video-Clip 5" data-en="Video Clip 5" data-fr="Clip Vidéo 5" data-pl="Klip Wideo 5" data-it="Clip Video 5" data-es="Clip de Vídeo 5" data-sr="Video Klip 5">Video-Clip 5</div>
-                            <a href="video-clips/clip5.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 6 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip6.jpg" alt="Video Clip 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 6" data-en="Clip 6" data-fr="Clip 6" data-pl="Klip 6" data-it="Clip 6" data-es="Clip 6" data-sr="Klip 6">Clip 6</div>
-                            <div class="video-clip-description" data-de="Video-Clip 6" data-en="Video Clip 6" data-fr="Clip Vidéo 6" data-pl="Klip Wideo 6" data-it="Clip Video 6" data-es="Clip de Vídeo 6" data-sr="Video Klip 6">Video-Clip 6</div>
-                            <a href="video-clips/clip6.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 7 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip7.jpg" alt="Video Clip 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 7" data-en="Clip 7" data-fr="Clip 7" data-pl="Klip 7" data-it="Clip 7" data-es="Clip 7" data-sr="Klip 7">Clip 7</div>
-                            <div class="video-clip-description" data-de="Video-Clip 7" data-en="Video Clip 7" data-fr="Clip Vidéo 7" data-pl="Klip Wideo 7" data-it="Clip Video 7" data-es="Clip de Vídeo 7" data-sr="Video Klip 7">Video-Clip 7</div>
-                            <a href="video-clips/clip7.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 8 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip8.jpg" alt="Video Clip 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 8" data-en="Clip 8" data-fr="Clip 8" data-pl="Klip 8" data-it="Clip 8" data-es="Clip 8" data-sr="Klip 8">Clip 8</div>
-                            <div class="video-clip-description" data-de="Video-Clip 8" data-en="Video Clip 8" data-fr="Clip Vidéo 8" data-pl="Klip Wideo 8" data-it="Clip Video 8" data-es="Clip de Vídeo 8" data-sr="Video Klip 8">Video-Clip 8</div>
-                            <a href="video-clips/clip8.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 9 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip9.jpg" alt="Video Clip 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 9" data-en="Clip 9" data-fr="Clip 9" data-pl="Klip 9" data-it="Clip 9" data-es="Clip 9" data-sr="Klip 9">Clip 9</div>
-                            <div class="video-clip-description" data-de="Video-Clip 9" data-en="Video Clip 9" data-fr="Clip Vidéo 9" data-pl="Klip Wideo 9" data-it="Clip Video 9" data-es="Clip de Vídeo 9" data-sr="Video Klip 9">Video-Clip 9</div>
-                            <a href="video-clips/clip9.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 10 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip10.jpg" alt="Video Clip 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 10" data-en="Clip 10" data-fr="Clip 10" data-pl="Klip 10" data-it="Clip 10" data-es="Clip 10" data-sr="Klip 10">Clip 10</div>
-                            <div class="video-clip-description" data-de="Video-Clip 10" data-en="Video Clip 10" data-fr="Clip Vidéo 10" data-pl="Klip Wideo 10" data-it="Clip Video 10" data-es="Clip de Vídeo 10" data-sr="Video Klip 10">Video-Clip 10</div>
-                            <a href="video-clips/clip10.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Video Clip 11 -->
-                    <div class="video-clip-card">
-                        <div class="video-clip-thumbnail">
-                            <img src="video-clips/thumbnails/clip11.jpg" alt="Video Clip 11" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22533%22%3E%3Crect width=%22300%22 height=%22533%22 fill=%22%232C2C2C%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B0B0B0%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThumbnail%3C/text%3E%3C/svg%3E'">
-                            <div class="video-clip-play-overlay">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="video-clip-info">
-                            <div class="video-clip-title" data-de="Clip 11" data-en="Clip 11" data-fr="Clip 11" data-pl="Klip 11" data-it="Clip 11" data-es="Clip 11" data-sr="Klip 11">Clip 11</div>
-                            <div class="video-clip-description" data-de="Video-Clip 11" data-en="Video Clip 11" data-fr="Clip Vidéo 11" data-pl="Klip Wideo 11" data-it="Clip Video 11" data-es="Clip de Vídeo 11" data-sr="Video Klip 11">Video-Clip 11</div>
-                            <a href="video-clips/clip11.mov" download class="video-clip-download-btn">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                                </svg>
-                                <span data-de="Download MOV" data-en="Download MOV" data-fr="Télécharger MOV" data-pl="Pobierz MOV" data-it="Scarica MOV" data-es="Descargar MOV" data-sr="Preuzmi MOV">Download MOV</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal" onclick="closeVideoModal(event)">
+        <div class="video-modal-content">
+            <span class="video-modal-close" onclick="closeVideoModal(event)">&times;</span>
+            <h3 id="videoModalTitle"></h3>
+            <video id="modalVideo" controls playsinline>
+                <source id="modalVideoSource" type="video/quicktime">
+            </video>
         </div>
     </div>
 
@@ -2753,6 +2662,56 @@
         document.addEventListener('DOMContentLoaded', function() {
             // ... existing initialization code ...
             initFAQ();
+        });
+
+        // ==============================
+        // VIDEO MODAL FUNCTIONS
+        // ==============================
+
+        function openVideoModal(videoSrc, title) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalVideoSource = document.getElementById('modalVideoSource');
+            const modalTitle = document.getElementById('videoModalTitle');
+
+            // Set video source and title
+            modalVideoSource.src = videoSrc;
+            modalVideo.load();
+            modalTitle.textContent = title;
+
+            // Show modal
+            modal.classList.add('active');
+
+            // Play video
+            modalVideo.play();
+        }
+
+        function closeVideoModal(event) {
+            // Only close if clicking on the modal background or close button
+            if (event.target.id === 'videoModal' || event.target.className === 'video-modal-close') {
+                const modal = document.getElementById('videoModal');
+                const modalVideo = document.getElementById('modalVideo');
+
+                // Pause and reset video
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+
+                // Hide modal
+                modal.classList.remove('active');
+            }
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('videoModal');
+                if (modal.classList.contains('active')) {
+                    const modalVideo = document.getElementById('modalVideo');
+                    modalVideo.pause();
+                    modalVideo.currentTime = 0;
+                    modal.classList.remove('active');
+                }
+            }
         });
     </script>
 
