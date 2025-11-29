@@ -1806,7 +1806,7 @@
                     <div class="video-clip-card" data-video="video-clips/clip1.mov">
                         <div class="video-clip-thumbnail" onclick="openVideoModal('video-clips/clip1.mov', 'Clip 1')">
                             <video preload="metadata" muted playsinline>
-                                <source src="video-clips/clip1.mov#t=0.1" type="video/quicktime">
+                                <source src="video-clips/clip1.mov#t=0.1">
                             </video>
                             <div class="video-clip-play-overlay">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1830,7 +1830,7 @@
                     <div class="video-clip-card" data-video="video-clips/clip2.mov">
                         <div class="video-clip-thumbnail" onclick="openVideoModal('video-clips/clip2.mov', 'Clip 2')">
                             <video preload="metadata" muted playsinline>
-                                <source src="video-clips/clip2.mov#t=0.1" type="video/quicktime">
+                                <source src="video-clips/clip2.mov#t=0.1">
                             </video>
                             <div class="video-clip-play-overlay">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1852,7 +1852,7 @@
                     <div class="video-clip-card" data-video="video-clips/clip3.mov">
                         <div class="video-clip-thumbnail" onclick="openVideoModal('video-clips/clip3.mov', 'Clip 3')">
                             <video preload="metadata" muted playsinline>
-                                <source src="video-clips/clip3.mov#t=0.1" type="video/quicktime">
+                                <source src="video-clips/clip3.mov#t=0.1">
                             </video>
                             <div class="video-clip-play-overlay">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1880,8 +1880,9 @@
         <div class="video-modal-content">
             <span class="video-modal-close" onclick="closeVideoModal(event)">&times;</span>
             <h3 id="videoModalTitle"></h3>
-            <video id="modalVideo" controls playsinline>
-                <source id="modalVideoSource" type="video/quicktime">
+            <video id="modalVideo" controls playsinline preload="auto">
+                <source id="modalVideoSource" type="video/mp4">
+                Dein Browser unterstützt das Video-Format nicht.
             </video>
         </div>
     </div>
@@ -2676,14 +2677,26 @@
 
             // Set video source and title
             modalVideoSource.src = videoSrc;
+
+            // Remove type attribute to let browser auto-detect
+            modalVideoSource.removeAttribute('type');
+
+            // Reload video
             modalVideo.load();
             modalTitle.textContent = title;
 
             // Show modal
             modal.classList.add('active');
 
-            // Play video
-            modalVideo.play();
+            // Play video with error handling
+            const playPromise = modalVideo.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Video playback failed:', error);
+                    // Fallback: Video will be playable via controls
+                });
+            }
         }
 
         function closeVideoModal(event) {
